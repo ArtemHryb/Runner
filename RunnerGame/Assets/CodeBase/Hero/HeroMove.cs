@@ -1,5 +1,4 @@
-﻿using CodeBase.Infrastructure;
-using CodeBase.Services.Input;
+﻿using CodeBase.Services.GameInput;
 using DG.Tweening;
 using UnityEngine;
 
@@ -13,39 +12,64 @@ namespace CodeBase.Hero
         
         private Line _currentLine = Line.Middle;
 
-        private IInputService _inputService;
+        private IInputReporter _inputReporter;
 
-        private void Awake() => 
-            _inputService = Game.InputService;
-
-        private void Start()
+        public void Initialize(IInputReporter inputReporter)
         {
-            _inputService.OnSwipeRight += MoveRight;
-            _inputService.OnSwipeLeft += MoveLeft;
-        } 
+            _inputReporter = inputReporter;
+
+            Subscribe();
+        }
+        
         private void Update()
         {
             Vector3 movementVector = Vector3.forward;
+            
             _characterController.Move(_movementSpeed * movementVector * Time.deltaTime);
         }
 
         private void OnDestroy()
         {
-            _inputService.OnSwipeRight -= MoveRight;
-            _inputService.OnSwipeLeft -= MoveLeft;
+            UnSubscribe();
         } 
+        
         private void MoveLeft()
         {
             if (_currentLine != Line.Left)
+            {
+                _currentLine--;
+                
                 transform.DOMoveX(transform.position.x - 1f, 0.5f)
-                    .SetEase(Ease.OutQuad).OnComplete(() => _currentLine --);
+                    .SetEase(Ease.OutQuad);
+                
+                Debug.Log("Move Left");
+            }
+                
         }
 
         private void MoveRight()
         {
-            if(_currentLine != Line.Right)
+            if (_currentLine != Line.Right)
+            {
+                _currentLine++;
+
                 transform.DOMoveX(transform.position.x + 1f, 0.5f)
-                    .SetEase(Ease.OutQuad).OnComplete(() => _currentLine ++);
+                    .SetEase(Ease.OutQuad);
+                
+                Debug.Log("Move Right");
+            }
+        }
+
+        private void Subscribe()
+        {
+            _inputReporter.OnSwipeRight += MoveRight;
+            _inputReporter.OnSwipeLeft += MoveLeft;
+        }
+
+        private void UnSubscribe()
+        {
+            _inputReporter.OnSwipeRight -= MoveRight;
+            _inputReporter.OnSwipeLeft -= MoveLeft;
         }
     }
 }
