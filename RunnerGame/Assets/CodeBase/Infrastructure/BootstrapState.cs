@@ -21,11 +21,9 @@ namespace CodeBase.Infrastructure
             _sceneLoader.Load(BootScene, onLoaded: EnterLoadLevel);
         }
 
-        private void EnterLoadLevel()
-        {
+        private void EnterLoadLevel() => 
             _stateMachine.Enter<LoadLevelState, string>(MainScene);
-        }
-        
+
         public void Exit()
         {
             
