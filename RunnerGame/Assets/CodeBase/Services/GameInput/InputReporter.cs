@@ -35,24 +35,16 @@ namespace CodeBase.Services.GameInput
         public void OnPointerDown(PointerEventData eventData)
         {
             _startTouchPosition = _camera.ScreenToWorldPoint(eventData.position);
-            
-            Debug.Log(eventData.position);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
             _endTouchPosition = _camera.ScreenToWorldPoint(eventData.position);
-            
-            Debug.Log(eventData.position);
-            
             CalculateAngle();
         }
 
         private void CalculateAngle()
         {
-            Debug.Log(_endTouchPosition.x);
-            Debug.Log(_startTouchPosition.x);
-            
             if (Mathf.Abs(_endTouchPosition.y - _startTouchPosition.y) > SwipeResist ||
                 Mathf.Abs(_endTouchPosition.x - _startTouchPosition.x) > SwipeResist)
             {

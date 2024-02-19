@@ -41,8 +41,6 @@ namespace CodeBase.Hero
                 
                 transform.DOMoveX(transform.position.x - 1f, 0.5f)
                     .SetEase(Ease.OutQuad);
-                
-                Debug.Log("Move Left");
             }
                 
         }
@@ -55,8 +53,6 @@ namespace CodeBase.Hero
 
                 transform.DOMoveX(transform.position.x + 1f, 0.5f)
                     .SetEase(Ease.OutQuad);
-                
-                Debug.Log("Move Right");
             }
         }
 

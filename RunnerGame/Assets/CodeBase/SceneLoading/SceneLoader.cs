@@ -9,18 +9,20 @@ namespace CodeBase.SceneLoading
     {
         private readonly ICoroutineRunner _coroutineRunner;
 
-        public SceneLoader(ICoroutineRunner coroutineRunner)
-        {
+        public SceneLoader(ICoroutineRunner coroutineRunner) => 
             _coroutineRunner = coroutineRunner;
-        }
-        
-        public void Load(string nextScene, Action onLoaded = null)
-        {
+
+        public void Load(string nextScene, Action onLoaded = null) => 
             _coroutineRunner.StartCoroutine(LoadScene(nextScene, onLoaded));
-        }
 
         private IEnumerator LoadScene(string nextScene, Action onLoaded = null)
         {
+            if (SceneManager.GetActiveScene().name == nextScene)
+            {
+                onLoaded?.Invoke();
+                yield break;
+            }
+            
             AsyncOperation waitNextScene = SceneManager.LoadSceneAsync(nextScene);
 
             while (!waitNextScene.isDone)

@@ -12,11 +12,9 @@ namespace CodeBase.Factories
             _assetProvider = assetProvider;
         }
         
-        public GameObject CreateBaseGameObject(string path, Vector3 at,
-            Quaternion rotation, Transform parent)
+        public GameObject CreateBaseGameObject(string path, Vector3 at, Quaternion rotation, Transform parent)
         {
-            return Object.Instantiate(_assetProvider.Initialize<GameObject>
-                (path), at, rotation, parent);
+            return Object.Instantiate(_assetProvider.Initialize<GameObject>(path), at, rotation, parent);
         }
     }
 }
