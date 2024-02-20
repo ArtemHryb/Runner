@@ -1,4 +1,5 @@
 using CodeBase.SceneLoading;
+using CodeBase.States;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure
