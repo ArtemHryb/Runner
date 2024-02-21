@@ -23,10 +23,8 @@ namespace CodeBase.Logic
 
         private void Update()
         {
-            if (_player.position.z > _spawnedChunks[_spawnedChunks.Count - 1].End.position.z)
-            {
+            if (_player.position.z > _spawnedChunks[_spawnedChunks.Count - 1].End.position.z) 
                 SpawnChunk();
-            }
         }
 
         private void SpawnChunk()
