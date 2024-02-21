@@ -1,4 +1,6 @@
-﻿using CodeBase.Services.GameInput;
+﻿using System;
+using CodeBase.CameraLogic;
+using CodeBase.Services.GameInput;
 using DG.Tweening;
 using UnityEngine;
 
@@ -20,7 +22,6 @@ namespace CodeBase.Hero
 
             Subscribe();
         }
-        
         private void Update()
         {
             Vector3 movementVector = Vector3.forward;

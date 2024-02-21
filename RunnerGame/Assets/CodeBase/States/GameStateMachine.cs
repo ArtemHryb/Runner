@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Factories;
+using CodeBase.Logic;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
 
