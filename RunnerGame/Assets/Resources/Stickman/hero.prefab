@@ -376,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: -1450212410136603630}
-  _movementSpeed: 2
+  _movementSpeed: 10
 --- !u!1 &2948335205932645437
 GameObject:
   m_ObjectHideFlags: 0

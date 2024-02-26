@@ -9,5 +9,6 @@ namespace CodeBase.Data
         public const string HUD = "UI/HUD";
         public const string Road = "LevelItems/Road";
         public const string Geometry = "Geometry";
+        public const string Coin = "LevelItems/coinStar";
     }
 }

@@ -13,7 +13,9 @@ namespace CodeBase.States
     {
         private static readonly Vector3 GameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
         private static readonly Vector3 GameCameraStartRotation = new (30f, 0f, 0f);
-        private static readonly Vector3 PlayerStartPosition = new (0f, 0.28f, -20f); //(0.4f, 0.3f, 3f);
+        private static readonly Vector3 PlayerStartPosition = new (0f, 0.28f, 0f);
+        private static readonly Vector3 CoinPosition = new (0f, 0.7f, 0f);
+        
         
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -46,9 +48,7 @@ namespace CodeBase.States
             hero.Initialize(gameView.InputReporter);
             
         }
-
-        private ChunkSpawner CreateGeometry() => 
-            _gameFactory.CreateBaseGameObject(AssetPath.Geometry, Vector3.zero, Quaternion.identity, null).GetComponent<ChunkSpawner>();
+        
 
         public void Exit()
         {
@@ -65,6 +65,9 @@ namespace CodeBase.States
 
         private GameObject CreateHud() => 
             _gameFactory.CreateBaseGameObject(AssetPath.HUD, Vector3.zero, Quaternion.identity, null);
+
+        private ChunkSpawner CreateGeometry() => 
+            _gameFactory.CreateBaseGameObject(AssetPath.Geometry, Vector3.zero, Quaternion.identity, null).GetComponent<ChunkSpawner>();
 
         private HeroMove CreateHero() => 
             _gameFactory.CreateBaseGameObject(AssetPath.Hero,PlayerStartPosition,

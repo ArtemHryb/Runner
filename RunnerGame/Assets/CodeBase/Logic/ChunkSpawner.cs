@@ -13,28 +13,31 @@ namespace CodeBase.Logic
 
         private List<Chunk> _spawnedChunks = new();
 
-        public void Initialize(Transform player) => 
-            _player = player;
+        private int _distanceToSpawn = 30;
 
-        private void Start()
+        public void Initialize(Transform player)
         {
             _spawnedChunks.Add(_firstChunk);
+            _player = player;
         }
 
         private void Update()
         {
-            if (_player.position.z > _spawnedChunks[_spawnedChunks.Count - 1].End.position.z) 
+            if (ReadyToSpawn()) 
                 SpawnChunk();
         }
+
+        private bool ReadyToSpawn() => 
+            _player.position.z > _spawnedChunks[_spawnedChunks.Count - 1].End.position.z - _distanceToSpawn;
 
         private void SpawnChunk()
         {
             Chunk newChunk = Instantiate(_chunkPrefab[Random.Range(0, _chunkPrefab.Length)]);
-            newChunk.transform.position =
+            newChunk.transform.position = 
                 _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Begin.localPosition;
             _spawnedChunks.Add(newChunk);
 
-            if (_spawnedChunks.Count >=2)
+            if (_spawnedChunks.Count >=3)
             {
                 Destroy(_spawnedChunks[0].gameObject);
                 _spawnedChunks.RemoveAt(0);
