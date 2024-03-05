@@ -14,7 +14,6 @@ namespace CodeBase.States
         private static readonly Vector3 GameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
         private static readonly Vector3 GameCameraStartRotation = new (30f, 0f, 0f);
         private static readonly Vector3 PlayerStartPosition = new (0f, 0.28f, 0f);
-        private static readonly Vector3 CoinPosition = new (0f, 0.7f, 0f);
         
         
         private readonly GameStateMachine _stateMachine;

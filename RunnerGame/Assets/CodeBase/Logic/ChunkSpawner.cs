@@ -10,7 +10,6 @@ namespace CodeBase.Logic
         [SerializeField] private Chunk _firstChunk;
         
         private Transform _player;
-
         private List<Chunk> _spawnedChunks = new();
 
         private int _distanceToSpawn = 30;
@@ -33,8 +32,10 @@ namespace CodeBase.Logic
         private void SpawnChunk()
         {
             Chunk newChunk = Instantiate(_chunkPrefab[Random.Range(0, _chunkPrefab.Length)]);
+            
             newChunk.transform.position = 
                 _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Begin.localPosition;
+            
             _spawnedChunks.Add(newChunk);
 
             if (_spawnedChunks.Count >=3)

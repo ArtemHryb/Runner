@@ -1,42 +1,35 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace CodeBase.Logic
 {
-    public class CoinSpawner : MonoBehaviour
-    { 
+    public class CoinSpawner : LevelItemsSpawner
+    {
         [SerializeField] private GameObject _coinPrefab;
-        
-        [SerializeField] private List<Transform> _coinsSpawnPoints = new();
-        
-        private int _density = 8;
 
-       private void Start()
-        {
-            SpawnCoins(_density);
-        }
-       
+        [SerializeField] private List<Transform> _coinsSpawnPoints;
 
-        private void SpawnCoins(int count)
+        [SerializeField] private Transform _coinsContainer;
+
+        private void Start() => 
+            SpawnItems();
+
+        public override void SpawnItems()
         {
-            Vector3 startPosition = new Vector3(0f, 0.7f, 0f);
-            Vector3 spacing = new Vector3(0f, 0f, 1f);
-            
-            
+            Vector3 startPosition = new Vector3(0f, 0.5f, 0f);
+            Vector3 spacing = new Vector3(0f, 0f, 0.5f);
                 
-                Vector3 currentPosition = startPosition;
-                
-                for (int i = 0; i < count; i++)
+            Vector3 currentPosition = startPosition;
+            for (int j = 0; j < 5; j++)
+            {
+                for (int i = 0; i < _coinsSpawnPoints.Count; i++)
                 {
-                    int spawnIndex = RandomCount();
-                    GameObject coin = Instantiate(_coinPrefab, _coinsSpawnPoints[spawnIndex].position + currentPosition,
-                        Quaternion.Euler(-90f,0f,0f), null);
+                    Instantiate(_coinPrefab, _coinsSpawnPoints[i].position + currentPosition,
+                        Quaternion.Euler(-90f,0f,0f), _coinsContainer);
+                    
                     currentPosition += spacing;
                 }
+            }
         }
-
-        private int RandomCount() => 
-            Random.Range(0, _coinsSpawnPoints.Count);
     }
 }
