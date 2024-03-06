@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace CodeBase.Logic
+namespace CodeBase.Logic.Spawners
 {
     public class Chunk : MonoBehaviour
     {

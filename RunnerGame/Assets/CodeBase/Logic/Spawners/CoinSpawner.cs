@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace CodeBase.Logic
+namespace CodeBase.Logic.Spawners
 {
     public class CoinSpawner : LevelItemsSpawner
     {

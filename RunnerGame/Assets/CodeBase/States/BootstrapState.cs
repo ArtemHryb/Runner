@@ -39,6 +39,7 @@ namespace CodeBase.States
         {
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>()));
         }
     }
 }

@@ -268,10 +268,11 @@ GameObject:
   - component: {fileID: 923863472863518100}
   - component: {fileID: -1450212410136603630}
   - component: {fileID: 2322712046188264389}
+  - component: {fileID: 4727606287234711488}
   - component: {fileID: -651285357032044096}
   m_Layer: 0
   m_Name: hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,10 +304,10 @@ Animator:
   m_GameObject: {fileID: 2934258229958347822}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2f9c11a6fb87ed648a6f7f3a4dbb1e0a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 703146db864b5a543a70c7a8ddac356f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -363,6 +364,18 @@ CapsuleCollider:
   m_Height: 1.168
   m_Direction: 1
   m_Center: {x: 0, y: 0.56, z: 0}
+--- !u!114 &4727606287234711488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2934258229958347822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b0cec378b3f46a4baf499abf475340c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-651285357032044096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: -1450212410136603630}
-  _movementSpeed: 10
+  _movementSpeed: 7
 --- !u!1 &2948335205932645437
 GameObject:
   m_ObjectHideFlags: 0

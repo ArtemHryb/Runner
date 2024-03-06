@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Factories;
-using CodeBase.Logic;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
 
@@ -17,7 +16,9 @@ namespace CodeBase.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,services),
-                [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
+                    services.Single<IUIFactory>()),
+                [typeof(GameOverState)] = new GameOverState(services.Single<IUIFactory>())
             };
         }
         public void Enter<TState>() where TState : class, IState

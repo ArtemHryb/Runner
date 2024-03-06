@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace CodeBase.Logic
+namespace CodeBase.Logic.Spawners
 {
     public class ChunkSpawner : MonoBehaviour
     {
@@ -31,7 +31,7 @@ namespace CodeBase.Logic
 
         private void SpawnChunk()
         {
-            Chunk newChunk = Instantiate(_chunkPrefab[Random.Range(0, _chunkPrefab.Length)]);
+            Chunk newChunk = Instantiate(_chunkPrefab[Random.Range(0, _chunkPrefab.Length)],Vector3.zero, Quaternion.identity,transform);
             
             newChunk.transform.position = 
                 _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Begin.localPosition;

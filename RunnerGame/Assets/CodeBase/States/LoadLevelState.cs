@@ -2,7 +2,7 @@
 using CodeBase.Data;
 using CodeBase.Factories;
 using CodeBase.Hero;
-using CodeBase.Logic;
+using CodeBase.Logic.Spawners;
 using CodeBase.SceneLoading;
 using CodeBase.UI;
 using UnityEngine;
@@ -15,16 +15,17 @@ namespace CodeBase.States
         private static readonly Vector3 GameCameraStartRotation = new (30f, 0f, 0f);
         private static readonly Vector3 PlayerStartPosition = new (0f, 0.28f, 0f);
         
-        
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
+        private readonly IUIFactory _uiFactory;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory, IUIFactory uiFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
+            _uiFactory = uiFactory;
         }
 
         public void Enter(string sceneName) => 
@@ -34,36 +35,37 @@ namespace CodeBase.States
         { 
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
-            CreateHud();
+
             
+            GameView hud = CreateHUD();   
+            HpBar hpBar = CreateHpBar(hud.transform);
+            hpBar.Initialize(_stateMachine);
+
+
             ChunkSpawner geometry = CreateGeometry();
             HeroMove hero = CreateHero();
             CameraFollow(gameCamera, hero);
             geometry.Initialize(hero.transform);
             
-            GameView gameView = CreateGameView();
-            
-            gameView.InputReporter.Initialize(uiCamera);
-            hero.Initialize(gameView.InputReporter);
+            hud.InputReporter.Initialize(uiCamera);
+            hero.Initialize(hud.InputReporter);
             
         }
-        
 
         public void Exit()
         {
             
         }
 
+        private GameView CreateHUD() => 
+            _uiFactory.CreateBaseWindow(AssetPath.HUD).GetComponent<GameView>();
+
+        private HpBar CreateHpBar(Transform hud) => 
+            _uiFactory.CreateBaseWindow(AssetPath.HpBar, hud.transform).GetComponent<HpBar>();
+
         private Camera CreateGameCamera() =>
             _gameFactory.CreateBaseGameObject(AssetPath.GameCamera, GameCameraStartPosition, 
                 Quaternion.Euler(GameCameraStartRotation), null).GetComponent<Camera>();
-
-        private GameView CreateGameView() => 
-            _gameFactory.CreateBaseGameObject(AssetPath.GameView,Vector3.zero,
-                Quaternion.identity,null).GetComponent<GameView>();
-
-        private GameObject CreateHud() => 
-            _gameFactory.CreateBaseGameObject(AssetPath.HUD, Vector3.zero, Quaternion.identity, null);
 
         private ChunkSpawner CreateGeometry() => 
             _gameFactory.CreateBaseGameObject(AssetPath.Geometry, Vector3.zero, Quaternion.identity, null).GetComponent<ChunkSpawner>();
