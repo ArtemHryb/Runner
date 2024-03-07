@@ -40,11 +40,8 @@ namespace CodeBase.UI
             UpdateHearts();
         }
 
-        private void Death()
-        {
+        private void Death() => 
             _stateMachine.Enter<GameOverState>();
-            Debug.Log("GameOverState Invoke");
-        }
 
         private void UpdateHearts()
         {

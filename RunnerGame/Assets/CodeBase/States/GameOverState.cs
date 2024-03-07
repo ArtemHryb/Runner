@@ -1,16 +1,20 @@
 ﻿using CodeBase.Data;
 using CodeBase.Factories;
+using CodeBase.UI.GameOverMenu;
 using UnityEngine;
 
 namespace CodeBase.States
 {
     public class GameOverState : IState
     {
+        private const string HUD = "Hud";
         private readonly IUIFactory _uiFactory;
+        private readonly GameStateMachine _stateMachine;
         
         
-        public GameOverState(IUIFactory uiFactory)
+        public GameOverState(GameStateMachine stateMachine,IUIFactory uiFactory)
         {
+            _stateMachine = stateMachine;
             _uiFactory = uiFactory;
         }
         
@@ -21,14 +25,15 @@ namespace CodeBase.States
 
         public void Enter()
         {
-            Debug.Log("Вы проиграли!!!!");
             CreateLoseMenu();
-            //Time.timeScale = 0f;
+            Time.timeScale = 0f;
         }
 
         private void CreateLoseMenu()
         {
-            _uiFactory.CreateBaseWindow(AssetPath.LoseWindow);
+            Transform parent = GameObject.FindWithTag(HUD).transform;
+            GameOverMenu loseWindow = _uiFactory.CreateBaseWindow(AssetPath.LoseWindow,parent).GetComponent<GameOverMenu>();
+            loseWindow.Initialize(_stateMachine);
         }
     }
 }

@@ -6,7 +6,7 @@ using CodeBase.Services;
 
 namespace CodeBase.States
 {
-    public class GameStateMachine
+    public class GameStateMachine : IService
     {
         private readonly Dictionary<Type,IExitableState> _states;
         private IExitableState _activeState;
@@ -18,7 +18,7 @@ namespace CodeBase.States
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,services),
                 [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
                     services.Single<IUIFactory>()),
-                [typeof(GameOverState)] = new GameOverState(services.Single<IUIFactory>())
+                [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>())
             };
         }
         public void Enter<TState>() where TState : class, IState

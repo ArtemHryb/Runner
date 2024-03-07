@@ -32,7 +32,10 @@ namespace CodeBase.States
             _sceneLoader.Load(sceneName, OnLoaded);
 
         private void OnLoaded()
-        { 
+        {
+            _gameFactory.CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f, 3f, 0f),
+                Quaternion.Euler(50f, -30f, 0f), null);
+            _gameFactory.CreateBaseGameObject(AssetPath.EventSystem, Vector3.zero, Quaternion.identity, null);
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
 
@@ -40,8 +43,7 @@ namespace CodeBase.States
             GameView hud = CreateHUD();   
             HpBar hpBar = CreateHpBar(hud.transform);
             hpBar.Initialize(_stateMachine);
-
-
+          
             ChunkSpawner geometry = CreateGeometry();
             HeroMove hero = CreateHero();
             CameraFollow(gameCamera, hero);
@@ -51,10 +53,8 @@ namespace CodeBase.States
             hero.Initialize(hud.InputReporter);
             
         }
-
         public void Exit()
         {
-            
         }
 
         private GameView CreateHUD() => 
