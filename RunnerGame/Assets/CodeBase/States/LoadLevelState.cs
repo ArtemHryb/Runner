@@ -14,6 +14,7 @@ namespace CodeBase.States
         private static readonly Vector3 GameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
         private static readonly Vector3 GameCameraStartRotation = new (30f, 0f, 0f);
         private static readonly Vector3 PlayerStartPosition = new (0f, 0.28f, 0f);
+        private static readonly Vector2 CoinCounterAnchoredPosition = new(150f, -130f);
         
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -33,32 +34,47 @@ namespace CodeBase.States
 
         private void OnLoaded()
         {
-            _gameFactory.CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f, 3f, 0f),
-                Quaternion.Euler(50f, -30f, 0f), null);
-            _gameFactory.CreateBaseGameObject(AssetPath.EventSystem, Vector3.zero, Quaternion.identity, null);
+            CreateDirectionalLight();
+            CreateEventSystem();
+            
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
 
             
-            GameView hud = CreateHUD();   
+            GameView hud = CreateHUD();
+            CoinCounter coinCount = CreateCoinCount(hud);
+            coinCount.Initialize();
+
             HpBar hpBar = CreateHpBar(hud.transform);
             hpBar.Initialize(_stateMachine);
-          
+
             ChunkSpawner geometry = CreateGeometry();
             HeroMove hero = CreateHero();
             CameraFollow(gameCamera, hero);
             geometry.Initialize(hero.transform);
-            
+
+
             hud.InputReporter.Initialize(uiCamera);
             hero.Initialize(hud.InputReporter);
             
         }
+
         public void Exit()
         {
         }
 
+        private void CreateEventSystem() => 
+            _gameFactory.CreateBaseGameObject(AssetPath.EventSystem, Vector3.zero, Quaternion.identity, null);
+
+        private void CreateDirectionalLight() =>
+            _gameFactory.CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f, 3f, 0f),
+                Quaternion.Euler(50f, -30f, 0f), null);
+
         private GameView CreateHUD() => 
             _uiFactory.CreateBaseWindow(AssetPath.HUD).GetComponent<GameView>();
+
+        private CoinCounter CreateCoinCount(GameView hud) => 
+            _uiFactory.CreateBaseWindow(AssetPath.CoinCounter,hud.transform,CoinCounterAnchoredPosition).GetComponent<CoinCounter>();
 
         private HpBar CreateHpBar(Transform hud) => 
             _uiFactory.CreateBaseWindow(AssetPath.HpBar, hud.transform).GetComponent<HpBar>();

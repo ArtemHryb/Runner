@@ -27,6 +27,15 @@ namespace CodeBase.Factories
             window.transform.localPosition = startPosition;
             return window;
         }
+        public GameObject CreateBaseWindow(string path, Transform parentTransform, Vector2 anchoredPosition)
+        {
+            GameObject window = Object.Instantiate(_assetProvider
+                .Initialize<GameObject>(path),parentTransform);
+            
+            window.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
+            
+            return window;
+        }
 
         public GameObject CreateBaseWindow(string path)
         {
