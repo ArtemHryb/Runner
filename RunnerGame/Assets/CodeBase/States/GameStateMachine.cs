@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Factories;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
+using CodeBase.Services.CoinService;
 
 namespace CodeBase.States
 {
@@ -17,7 +18,7 @@ namespace CodeBase.States
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,services),
                 [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
-                    services.Single<IUIFactory>()),
+                    services.Single<IUIFactory>(),services.Single<ICoinService>()),
                 [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>())
             };
         }

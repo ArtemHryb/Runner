@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _restartButton: {fileID: 583305577885299893}
+  _highestScore: {fileID: 2691215223812878776}
 --- !u!1 &7184985732630045238
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,8 +2,10 @@
 using CodeBase.Data;
 using CodeBase.Factories;
 using CodeBase.Hero;
+using CodeBase.Logic.Coin;
 using CodeBase.Logic.Spawners;
 using CodeBase.SceneLoading;
+using CodeBase.Services.CoinService;
 using CodeBase.UI;
 using UnityEngine;
 
@@ -20,13 +22,15 @@ namespace CodeBase.States
         private readonly SceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
+        private readonly ICoinService _coinService;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory, IUIFactory uiFactory)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory, IUIFactory uiFactory,ICoinService coinService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
             _uiFactory = uiFactory;
+            _coinService = coinService;
         }
 
         public void Enter(string sceneName) => 
@@ -39,21 +43,20 @@ namespace CodeBase.States
             
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
-
             
             GameView hud = CreateHUD();
-            CoinCounter coinCount = CreateCoinCount(hud);
-            coinCount.Initialize();
-
+            
             HpBar hpBar = CreateHpBar(hud.transform);
             hpBar.Initialize(_stateMachine);
+            
+            CoinsView coinCounter = CreateCoinView(hud); 
+            coinCounter.Initialize(_coinService);
 
             ChunkSpawner geometry = CreateGeometry();
             HeroMove hero = CreateHero();
             CameraFollow(gameCamera, hero);
             geometry.Initialize(hero.transform);
-
-
+                
             hud.InputReporter.Initialize(uiCamera);
             hero.Initialize(hud.InputReporter);
             
@@ -73,8 +76,8 @@ namespace CodeBase.States
         private GameView CreateHUD() => 
             _uiFactory.CreateBaseWindow(AssetPath.HUD).GetComponent<GameView>();
 
-        private CoinCounter CreateCoinCount(GameView hud) => 
-            _uiFactory.CreateBaseWindow(AssetPath.CoinCounter,hud.transform,CoinCounterAnchoredPosition).GetComponent<CoinCounter>();
+        private CoinsView CreateCoinView(GameView hud) => 
+            _uiFactory.CreateBaseWindow(AssetPath.CoinCounter, hud.transform, CoinCounterAnchoredPosition).GetComponent<CoinsView>();
 
         private HpBar CreateHpBar(Transform hud) => 
             _uiFactory.CreateBaseWindow(AssetPath.HpBar, hud.transform).GetComponent<HpBar>();
