@@ -1,4 +1,5 @@
 ﻿using CodeBase.States;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,14 @@ namespace CodeBase.UI.GameOverMenu
         private const string Gamebootstrapper = "GameBootstrapper";
 
         [SerializeField] private Button _restartButton;
+        [SerializeField] private TMP_Text _scoreText;
 
         private GameStateMachine _stateMachine;
         
-        public void Initialize(GameStateMachine stateMachine)
+        public void Initialize(GameStateMachine stateMachine,int score)
         {
             _stateMachine = stateMachine;
+            _scoreText.text = score.ToString();
         }
         private void Awake()
         {

@@ -2,6 +2,7 @@
 using CodeBase.Factories.AssetProviding;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
+using CodeBase.Services.BestScore;
 using CodeBase.Services.CoinService;
 
 namespace CodeBase.States
@@ -42,6 +43,7 @@ namespace CodeBase.States
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>()));
             _services.RegisterSingle<ICoinService>(new CoinService());
+            _services.RegisterSingle<ISaveTheBestScore>(new SaveTheBestScore(_services.Single<ICoinService>()));
         }
     }
 }

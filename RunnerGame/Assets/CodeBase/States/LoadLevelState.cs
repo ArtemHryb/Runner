@@ -24,7 +24,8 @@ namespace CodeBase.States
         private readonly IUIFactory _uiFactory;
         private readonly ICoinService _coinService;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory, IUIFactory uiFactory,ICoinService coinService)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
+            IUIFactory uiFactory,ICoinService coinService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -52,6 +53,8 @@ namespace CodeBase.States
             CoinsView coinCounter = CreateCoinView(hud); 
             coinCounter.Initialize(_coinService);
 
+            _coinService.ResetCoin();
+            
             ChunkSpawner geometry = CreateGeometry();
             HeroMove hero = CreateHero();
             CameraFollow(gameCamera, hero);
