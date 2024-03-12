@@ -11,6 +11,7 @@ namespace CodeBase.Data
         public const string Geometry = "LevelItems/Geometry";
         public const string DirectionalLight = "DirectionalLight";
         public const string EventSystem = "EventSystem";
-        public const string CoinCounter = "UI/CoinCounter"; 
+        public const string CoinCounter = "UI/CoinCounter";
+        public const string MainMenu = "UI/MainMenu";
     }
 }

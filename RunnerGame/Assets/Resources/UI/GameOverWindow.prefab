@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _restartButton: {fileID: 583305577885299893}
+  _mainMenuButton: {fileID: 8872474613714102894}
   _scoreText: {fileID: 5861744807001592515}
 --- !u!1 &7184985732630045238
 GameObject:
@@ -984,6 +985,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6735901785568249008, guid: 733a18b2474c64e7b8bb3b9df02b1d27, type: 3}
   m_PrefabInstance: {fileID: 8206562749697678845}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8872474613714102894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 775408517337544595, guid: 733a18b2474c64e7b8bb3b9df02b1d27, type: 3}
+  m_PrefabInstance: {fileID: 8206562749697678845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9004805000553052953
 PrefabInstance:
   m_ObjectHideFlags: 0

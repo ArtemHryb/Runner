@@ -11,6 +11,7 @@ namespace CodeBase.UI.GameOverMenu
         private const string Gamebootstrapper = "GameBootstrapper";
 
         [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _mainMenuButton;
         [SerializeField] private TMP_Text _scoreText;
 
         private GameStateMachine _stateMachine;
@@ -23,6 +24,14 @@ namespace CodeBase.UI.GameOverMenu
         private void Awake()
         {
             _restartButton.onClick.AddListener(RestartButtonBehaviour);
+            _mainMenuButton.onClick.AddListener(MainMenuButtonBehaviour);
+        }
+
+        private void MainMenuButtonBehaviour()
+        {
+            ClearScene();
+            _stateMachine.Enter<MainMenuState>();
+            Time.timeScale = 1f;
         }
 
         private void RestartButtonBehaviour()

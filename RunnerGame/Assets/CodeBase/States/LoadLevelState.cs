@@ -2,7 +2,6 @@
 using CodeBase.Data;
 using CodeBase.Factories;
 using CodeBase.Hero;
-using CodeBase.Logic.Coin;
 using CodeBase.Logic.Spawners;
 using CodeBase.SceneLoading;
 using CodeBase.Services.CoinService;

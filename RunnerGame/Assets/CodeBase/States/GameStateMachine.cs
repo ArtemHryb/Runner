@@ -18,6 +18,8 @@ namespace CodeBase.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,services),
+                [typeof(MainMenuState)] = new MainMenuState(this,sceneLoader,services.Single<IUIFactory>(),
+                        services.Single<ISaveTheBestScore>()),
                 [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
                     services.Single<IUIFactory>(),services.Single<ICoinService>()),
                 [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>(),services.Single<ISaveTheBestScore>())

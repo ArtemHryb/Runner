@@ -10,7 +10,6 @@ namespace CodeBase.States
     public class BootstrapState : IState
     {
         private const string BootScene = "Boot";
-        private const string MainScene = "Main";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -25,17 +24,15 @@ namespace CodeBase.States
             RegisterServices();
         }
         
-        public void Enter()
-        {
+        public void Enter() => 
             _sceneLoader.Load(BootScene, onLoaded: EnterLoadLevel);
-        }
 
         public void Exit()
         {
         }
 
         private void EnterLoadLevel() => 
-            _stateMachine.Enter<LoadLevelState, string>(MainScene);
+            _stateMachine.Enter<MainMenuState>();
 
         private void RegisterServices()
         {
