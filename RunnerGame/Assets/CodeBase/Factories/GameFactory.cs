@@ -14,6 +14,9 @@ namespace CodeBase.Factories
 
         public GameObject CreateBaseGameObject(string path, Vector3 at, Quaternion rotation, Transform parent) => 
             Object.Instantiate(_assetProvider.Initialize<GameObject>(path), at, rotation, parent);
+
+        public T CreateBaseGameObject<T>(string path) where T : Component =>
+            Object.Instantiate(_assetProvider.Initialize<T>(path));
     }
 }
        

@@ -47,5 +47,8 @@ namespace CodeBase.Factories
             window.transform.localPosition = startPosition;
             return window;
         }
+
+        public T CreateBaseWindow<T>(string path) where T : Component => 
+            Object.Instantiate(_assetProvider.Initialize<T>(path));
     }
 }

@@ -1,9 +1,11 @@
-﻿using CodeBase.CameraLogic;
+﻿using CodeBase.Audio;
+using CodeBase.CameraLogic;
 using CodeBase.Data;
 using CodeBase.Factories;
 using CodeBase.Hero;
 using CodeBase.Logic.Spawners;
 using CodeBase.SceneLoading;
+using CodeBase.Services.Audio;
 using CodeBase.Services.CoinService;
 using CodeBase.UI;
 using UnityEngine;
@@ -22,15 +24,17 @@ namespace CodeBase.States
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
         private readonly ICoinService _coinService;
+        private readonly IAudioService _audioService;
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
-            IUIFactory uiFactory,ICoinService coinService)
+            IUIFactory uiFactory,ICoinService coinService, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _gameFactory = gameFactory;
             _uiFactory = uiFactory;
             _coinService = coinService;
+            _audioService = audioService;
         }
 
         public void Enter(string sceneName) => 
@@ -38,6 +42,7 @@ namespace CodeBase.States
 
         private void OnLoaded()
         {
+            //_audioService.PlayMusic(MusicType.Game);
             CreateDirectionalLight();
             CreateEventSystem();
             

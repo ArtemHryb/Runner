@@ -2,6 +2,7 @@
 using CodeBase.Factories.AssetProviding;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
+using CodeBase.Services.Audio;
 using CodeBase.Services.BestScore;
 using CodeBase.Services.CoinService;
 
@@ -25,21 +26,24 @@ namespace CodeBase.States
         }
         
         public void Enter() => 
-            _sceneLoader.Load(BootScene, onLoaded: EnterLoadLevel);
+            _sceneLoader.Load(BootScene, onLoaded: EnterMenu);
 
         public void Exit()
         {
         }
 
-        private void EnterLoadLevel() => 
+        private void EnterMenu() => 
             _stateMachine.Enter<MainMenuState>();
+
 
         private void RegisterServices()
         {
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>()));
-            _services.RegisterSingle<ICoinService>(new CoinService());
+            _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IAssetProvider>(),
+                _services.Single<IGameFactory>()));
+            _services.RegisterSingle<ICoinService>(new CoinService(_services.Single<IAudioService>()));
             _services.RegisterSingle<ISaveTheBestScore>(new SaveTheBestScore(_services.Single<ICoinService>()));
         }
     }

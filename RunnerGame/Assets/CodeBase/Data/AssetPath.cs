@@ -13,5 +13,11 @@ namespace CodeBase.Data
         public const string EventSystem = "EventSystem";
         public const string CoinCounter = "UI/CoinCounter";
         public const string MainMenu = "UI/MainMenu";
+        
+        public const string SfxHolder = "Audio/SfxHolder";
+        public const string SfxAudioSource = "Audio/SfxAudioSource";
+        
+        public const string MusicHolder = "Audio/MusicHolder";
+        public const string MusicAudioSource = "Audio/MusicAudioSource";
     }
 }

@@ -11,9 +11,6 @@ namespace CodeBase.Infrastructure
         {
             _game = new Game(this);
             _game.StateMachine.Enter<BootstrapState>();
-            // IBaseFactory factory = new BaseFactory(new AssetProvider());
-            // LoadGameState loadGameState = new LoadGameState(this, factory);
-            // loadGameState.Enter();
             
             DontDestroyOnLoad(this);
         }

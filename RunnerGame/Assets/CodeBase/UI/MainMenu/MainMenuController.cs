@@ -1,4 +1,6 @@
-﻿using CodeBase.Services.BestScore;
+﻿using CodeBase.Audio;
+using CodeBase.Services.Audio;
+using CodeBase.Services.BestScore;
 using CodeBase.States;
 using UnityEngine;
 
@@ -10,13 +12,15 @@ namespace CodeBase.UI.MainMenu
 
         private GameStateMachine _stateMachine;
         private ISaveTheBestScore _saveTheBestScore;
+        private IAudioService _audioService;
 
         private MainMenuModel _mainMenuModel = new();
 
-        public void Initialize(GameStateMachine stateMachine,ISaveTheBestScore saveTheBestScore)
+        public void Initialize(GameStateMachine stateMachine,ISaveTheBestScore saveTheBestScore, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _saveTheBestScore = saveTheBestScore;
+            _audioService = audioService;
             InitInterface();
         }
 
@@ -29,6 +33,8 @@ namespace CodeBase.UI.MainMenu
 
         private void Play()
         {
+            Debug.Log("Play Button Pressed");
+            //_audioService.PlaySfx(SfxType.PickCoin);
             _mainMenuModel.MoveToGameScene(_stateMachine);
             Destroy(_mainMenuView.gameObject);
         }
