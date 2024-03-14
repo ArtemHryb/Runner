@@ -8,7 +8,6 @@ namespace CodeBase.Infrastructure
     public class Game
     {
         public GameStateMachine StateMachine;
-        public IAudioService AudioService;
 
         public Game(ICoroutineRunner coroutineRunner)
         {

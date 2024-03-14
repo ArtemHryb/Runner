@@ -15,9 +15,9 @@ namespace CodeBase.Data
         public const string MainMenu = "UI/MainMenu";
         
         public const string SfxHolder = "Audio/SfxHolder";
-        public const string SfxAudioSource = "Audio/SfxAudioSource";
+        public const string SfxAudioSource = "SfxAudioSource";
         
         public const string MusicHolder = "Audio/MusicHolder";
-        public const string MusicAudioSource = "Audio/MusicAudioSource";
+        public const string MusicAudioSource = "MusicAudioSource";
     }
 }

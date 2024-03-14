@@ -16,8 +16,8 @@ namespace CodeBase.Services.CoinService
         }
         public void GetCoin(int count)
         {
-            _audioService.PlaySfx(SfxType.PickCoin);
             Count += count;
+            _audioService.PlaySfx(SfxType.PickCoin);
             OnCoinPick?.Invoke();
         }
 

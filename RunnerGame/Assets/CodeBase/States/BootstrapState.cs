@@ -24,16 +24,19 @@ namespace CodeBase.States
             
             RegisterServices();
         }
-        
-        public void Enter() => 
+
+        public void Enter()
+        {
             _sceneLoader.Load(BootScene, onLoaded: EnterMenu);
+        }
+           
+
+            private void EnterMenu() => 
+            _stateMachine.Enter<MainMenuState>();
 
         public void Exit()
         {
         }
-
-        private void EnterMenu() => 
-            _stateMachine.Enter<MainMenuState>();
 
 
         private void RegisterServices()

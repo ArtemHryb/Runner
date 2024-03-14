@@ -12,8 +12,8 @@ namespace CodeBase.Services.Audio
         private readonly IAssetProvider _assetProvider;
         private readonly IGameFactory _gameFactory;
 
-        private List<SfxData> _sfxDataList = new();
-        private List<MusicData> _musicDataList = new();
+        private readonly List<SfxData> _sfxDataList = new();
+        private readonly List<MusicData> _musicDataList = new();
 
         private AudioSource _sfxAudioSource;
         private AudioSource _musicAudioSource;
@@ -22,7 +22,7 @@ namespace CodeBase.Services.Audio
         {
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
-
+            
             InitializeMusicDataList();
             InitializeSfxDataList();
             InitializeMusicAudioSource();
@@ -71,6 +71,7 @@ namespace CodeBase.Services.Audio
             
             foreach (MusicData music in musicHolder.Musics) 
                 _musicDataList.Add(music);
+            
         }
 
         private void InitializeSfxAudioSource() => 

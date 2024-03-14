@@ -18,6 +18,6 @@ MonoBehaviour:
   - _sfxType: 1
     _audioClip: {fileID: 8300000, guid: 556faa6c520410b4e8d55370702c1b9a, type: 3}
   - _sfxType: 2
-    _audioClip: {fileID: 0}
+    _audioClip: {fileID: 8300000, guid: 9acbea73e5b4b5f4ebe338a299f511d7, type: 3}
   - _sfxType: 3
     _audioClip: {fileID: 8300000, guid: 491e2b364bc9b324eb1ddd4ec6389a6e, type: 3}

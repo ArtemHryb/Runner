@@ -38,9 +38,9 @@ namespace CodeBase.States
         }
 
         public void Enter(string sceneName) => 
-            _sceneLoader.Load(sceneName, OnLoaded);
+            _sceneLoader.Load(sceneName, InitGameWorld);
 
-        private void OnLoaded()
+        private void InitGameWorld()
         {
             //_audioService.PlayMusic(MusicType.Game);
             CreateDirectionalLight();

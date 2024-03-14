@@ -33,8 +33,7 @@ namespace CodeBase.UI.MainMenu
 
         private void Play()
         {
-            Debug.Log("Play Button Pressed");
-            //_audioService.PlaySfx(SfxType.PickCoin);
+            //_audioService.PlaySfx(SfxType.Click);
             _mainMenuModel.MoveToGameScene(_stateMachine);
             Destroy(_mainMenuView.gameObject);
         }
