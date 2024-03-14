@@ -37,7 +37,8 @@ namespace CodeBase.UI.GameOverMenu
         private void RestartButtonBehaviour()
         {
             ClearScene();
-            _stateMachine.Enter<LoadLevelState,string>(MainScene);
+            // _stateMachine.Enter<LoadLevelState,string>(MainScene);
+            _stateMachine.Enter<LoadLevelState>();
             Time.timeScale = 1f;
         }
         
@@ -48,7 +49,8 @@ namespace CodeBase.UI.GameOverMenu
             {
                 if(obj == GameObject.Find(Gamebootstrapper))
                     return;
-                else
+
+                if(!obj.TryGetComponent(out AudioSource audioSource) && !obj.TryGetComponent(out AudioListener audioListener))
                     Destroy(obj);
             }
         }

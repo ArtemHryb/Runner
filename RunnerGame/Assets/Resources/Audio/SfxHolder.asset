@@ -16,8 +16,8 @@ MonoBehaviour:
   - _sfxType: 0
     _audioClip: {fileID: 8300000, guid: 9acbea73e5b4b5f4ebe338a299f511d7, type: 3}
   - _sfxType: 1
-    _audioClip: {fileID: 8300000, guid: 556faa6c520410b4e8d55370702c1b9a, type: 3}
+    _audioClip: {fileID: 8300000, guid: 2eb3dadce8177471996f94d099823504, type: 3}
   - _sfxType: 2
-    _audioClip: {fileID: 8300000, guid: 9acbea73e5b4b5f4ebe338a299f511d7, type: 3}
+    _audioClip: {fileID: 8300000, guid: 73d6ab53a2fc4c64f9125a3b079631c8, type: 3}
   - _sfxType: 3
     _audioClip: {fileID: 8300000, guid: 491e2b364bc9b324eb1ddd4ec6389a6e, type: 3}

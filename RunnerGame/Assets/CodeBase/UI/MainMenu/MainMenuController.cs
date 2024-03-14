@@ -33,12 +33,15 @@ namespace CodeBase.UI.MainMenu
 
         private void Play()
         {
-            //_audioService.PlaySfx(SfxType.Click);
+            _audioService.PlaySfx(SfxType.Click);
             _mainMenuModel.MoveToGameScene(_stateMachine);
             Destroy(_mainMenuView.gameObject);
         }
 
-        private void Exit() => 
+        private void Exit()
+        {
+            _audioService.PlaySfx(SfxType.Click);
             _mainMenuModel.Exit();
+        }
     }
 }

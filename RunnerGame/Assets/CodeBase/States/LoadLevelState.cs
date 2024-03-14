@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace CodeBase.States
 {
-    public class LoadLevelState : IPayLoadedState<string>
+    public class LoadLevelState : IState //IPayLoadedState<string>
     {
         private static readonly Vector3 GameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
         private static readonly Vector3 GameCameraStartRotation = new (30f, 0f, 0f);
@@ -37,12 +37,18 @@ namespace CodeBase.States
             _audioService = audioService;
         }
 
-        public void Enter(string sceneName) => 
-            _sceneLoader.Load(sceneName, InitGameWorld);
+        // public void Enter(string sceneName) => 
+        //     _sceneLoader.Load(sceneName, InitGameWorld);
+
+
+        public void Enter()
+        {
+            _sceneLoader.Load("Main",InitGameWorld);
+        }
 
         private void InitGameWorld()
         {
-            //_audioService.PlayMusic(MusicType.Game);
+            _audioService.PlayMusic(MusicType.Game);
             CreateDirectionalLight();
             CreateEventSystem();
             
@@ -52,7 +58,7 @@ namespace CodeBase.States
             GameView hud = CreateHUD();
             
             HpBar hpBar = CreateHpBar(hud.transform);
-            hpBar.Initialize(_stateMachine);
+            hpBar.Initialize(_stateMachine,_audioService);
             
             CoinsView coinCounter = CreateCoinView(hud); 
             coinCounter.Initialize(_coinService);
@@ -71,6 +77,7 @@ namespace CodeBase.States
 
         public void Exit()
         {
+            Debug.Log("LoadLevelStateExit");
         }
 
         private void CreateEventSystem() => 

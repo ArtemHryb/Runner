@@ -23,6 +23,7 @@ namespace CodeBase.Services.Audio
             _assetProvider = assetProvider;
             _gameFactory = gameFactory;
             
+            InitializeAudioListener();
             InitializeMusicDataList();
             InitializeSfxDataList();
             InitializeMusicAudioSource();
@@ -71,14 +72,25 @@ namespace CodeBase.Services.Audio
             
             foreach (MusicData music in musicHolder.Musics) 
                 _musicDataList.Add(music);
-            
         }
 
-        private void InitializeSfxAudioSource() => 
+        private void InitializeSfxAudioSource()
+        {
             _sfxAudioSource = _gameFactory.CreateBaseGameObject<AudioSource>(AssetPath.SfxAudioSource);
+            Object.DontDestroyOnLoad(_sfxAudioSource);
+        }
 
 
-        private void InitializeMusicAudioSource() => 
+        private void InitializeMusicAudioSource()
+        {
             _musicAudioSource = _gameFactory.CreateBaseGameObject<AudioSource>(AssetPath.MusicAudioSource);
+            Object.DontDestroyOnLoad(_musicAudioSource);
+        }
+
+        private void InitializeAudioListener()
+        {
+            AudioListener audioListener = _gameFactory.CreateBaseGameObject<AudioListener>(AssetPath.AudioListener);
+            Object.DontDestroyOnLoad(audioListener);
+        }
     }
 }

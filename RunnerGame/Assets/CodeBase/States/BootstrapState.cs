@@ -29,9 +29,8 @@ namespace CodeBase.States
         {
             _sceneLoader.Load(BootScene, onLoaded: EnterMenu);
         }
-           
 
-            private void EnterMenu() => 
+        private void EnterMenu() => 
             _stateMachine.Enter<MainMenuState>();
 
         public void Exit()

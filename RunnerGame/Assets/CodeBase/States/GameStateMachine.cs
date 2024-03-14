@@ -23,7 +23,8 @@ namespace CodeBase.States
                         services.Single<ISaveTheBestScore>(),services.Single<IAudioService>()),
                 [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
                     services.Single<IUIFactory>(),services.Single<ICoinService>(),services.Single<IAudioService>()),
-                [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>(),services.Single<ISaveTheBestScore>())
+                [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>(),
+                    services.Single<ISaveTheBestScore>(),services.Single<IAudioService>())
             };
         }
         public void Enter<TState>() where TState : class, IState

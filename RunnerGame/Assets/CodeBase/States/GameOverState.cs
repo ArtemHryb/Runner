@@ -1,5 +1,7 @@
-﻿using CodeBase.Data;
+﻿using CodeBase.Audio;
+using CodeBase.Data;
 using CodeBase.Factories;
+using CodeBase.Services.Audio;
 using CodeBase.Services.BestScore;
 using CodeBase.UI.GameOverMenu;
 using UnityEngine;
@@ -10,16 +12,19 @@ namespace CodeBase.States
     public class GameOverState : IState
     {
         private const string HUD = "Hud";
+        
         private readonly IUIFactory _uiFactory;
         private readonly ISaveTheBestScore _bestScore;
+        private readonly IAudioService _audioService;
         private readonly GameStateMachine _stateMachine;
         
         
-        public GameOverState(GameStateMachine stateMachine,IUIFactory uiFactory,ISaveTheBestScore bestScore)
+        public GameOverState(GameStateMachine stateMachine,IUIFactory uiFactory,ISaveTheBestScore bestScore,IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _uiFactory = uiFactory;
             _bestScore = bestScore;
+            _audioService = audioService;
         }
         
         public void Exit()
@@ -31,7 +36,11 @@ namespace CodeBase.States
         {
             _bestScore.Save();
             
+            _audioService.PlaySfx(SfxType.GameOver);
+            _audioService.StopMusic();
+            
             CreateLoseMenu();
+            
             Time.timeScale = 0f;
         }
 

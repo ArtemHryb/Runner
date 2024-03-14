@@ -9,7 +9,8 @@ namespace CodeBase.UI.MainMenu
         private const string MainScene = "Main";
         
         public void MoveToGameScene(GameStateMachine stateMachine) => 
-            stateMachine.Enter<LoadLevelState,string>(MainScene);
+            // stateMachine.Enter<LoadLevelState,string>(MainScene);
+            stateMachine.Enter<LoadLevelState>();
 
         public void Exit() => 
             Application.Quit();

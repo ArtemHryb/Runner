@@ -10,7 +10,7 @@ namespace CodeBase.States
 {
     public class MainMenuState : IState
     {
-        private const string MainScene = "Main";
+        private const string BootScene = "Boot";
 
         private readonly GameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
@@ -35,7 +35,8 @@ namespace CodeBase.States
 
         public void Enter()
         {
-            _sceneLoader.Load(MainScene, Initialize);
+            //_sceneLoader.Load(BootScene, Initialize);
+            Initialize();
         }
 
         private void Initialize()
@@ -44,7 +45,7 @@ namespace CodeBase.States
             _uiFactory.CreateBaseWindow(AssetPath.UICamera);
            MainMenuController mainMenu = _uiFactory.CreateBaseWindow(AssetPath.MainMenu, null).GetComponent<MainMenuController>();
            mainMenu.Initialize(_stateMachine,_saveTheBestScore,_audioService);
-           //_audioService.PlayMusic(MusicType.MainMenu);
+           _audioService.PlayMusic(MusicType.MainMenu);
         }
     }
 }

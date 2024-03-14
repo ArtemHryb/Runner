@@ -13,6 +13,7 @@ namespace CodeBase.Logic
             {
                 other.GetComponent<HeroHealth>().TakeDamage();
             }
+            Destroy(gameObject);
         }
     }
 }

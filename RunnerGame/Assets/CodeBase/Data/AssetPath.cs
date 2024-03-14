@@ -19,5 +19,6 @@ namespace CodeBase.Data
         
         public const string MusicHolder = "Audio/MusicHolder";
         public const string MusicAudioSource = "MusicAudioSource";
+        public const string AudioListener = "AudioListener";
     }
 }
