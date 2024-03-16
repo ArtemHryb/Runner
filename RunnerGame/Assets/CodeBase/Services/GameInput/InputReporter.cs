@@ -27,10 +27,8 @@ namespace CodeBase.Services.GameInput
 
         private Camera _camera;
         
-        public void Initialize(Camera camera)
-        {
+        public void Initialize(Camera camera) => 
             _camera = camera;
-        }
 
         public void OnPointerDown(PointerEventData eventData)
         {

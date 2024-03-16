@@ -11,15 +11,13 @@ namespace CodeBase.States
 {
     public class GameOverState : IState
     {
-        private const string HUD = "Hud";
-        
         private readonly IUIFactory _uiFactory;
         private readonly ISaveTheBestScore _bestScore;
         private readonly IAudioService _audioService;
-        private readonly GameStateMachine _stateMachine;
+        private readonly IGameStateMachine _stateMachine;
         
         
-        public GameOverState(GameStateMachine stateMachine,IUIFactory uiFactory,ISaveTheBestScore bestScore,IAudioService audioService)
+        public GameOverState(IGameStateMachine stateMachine,IUIFactory uiFactory,ISaveTheBestScore bestScore,IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _uiFactory = uiFactory;
@@ -29,12 +27,11 @@ namespace CodeBase.States
         
         public void Exit()
         {
-            
         }
 
         public void Enter()
         {
-            _bestScore.Save();
+             _bestScore.Save();
             
             _audioService.PlaySfx(SfxType.GameOver);
             _audioService.StopMusic();
@@ -48,7 +45,7 @@ namespace CodeBase.States
         {
             _bestScore.Load();
             int score = _bestScore.TheBestScore;
-            Transform parent = GameObject.FindWithTag(HUD).transform;
+            Transform parent = GameObject.FindWithTag(AllTags.HUD).transform;
             GameOverMenu loseWindow = _uiFactory.CreateBaseWindow(AssetPath.LoseWindow,parent).GetComponent<GameOverMenu>();
             loseWindow.Initialize(_stateMachine,score);
         }

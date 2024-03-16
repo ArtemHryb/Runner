@@ -12,21 +12,21 @@ using UnityEngine;
 
 namespace CodeBase.States
 {
-    public class LoadLevelState : IState //IPayLoadedState<string>
+    public class LoadLevelState : IState
     {
-        private static readonly Vector3 GameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
-        private static readonly Vector3 GameCameraStartRotation = new (30f, 0f, 0f);
-        private static readonly Vector3 PlayerStartPosition = new (0f, 0.28f, 0f);
-        private static readonly Vector2 CoinCounterAnchoredPosition = new(150f, -130f);
+        private readonly Vector3 _gameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
+        private readonly Vector3 _gameCameraStartRotation = new (30f, 0f, 0f);
+        private readonly Vector3 _playerStartPosition = new (0f, 0.28f, 0f);
+        private readonly Vector2 _coinCounterAnchoredPosition = new(150f, -130f);
         
-        private readonly GameStateMachine _stateMachine;
-        private readonly SceneLoader _sceneLoader;
+        private readonly IGameStateMachine _stateMachine;
+        private readonly ISceneLoader _sceneLoader;
         private readonly IGameFactory _gameFactory;
         private readonly IUIFactory _uiFactory;
         private readonly ICoinService _coinService;
         private readonly IAudioService _audioService;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, IGameFactory gameFactory,
+        public LoadLevelState(IGameStateMachine stateMachine, ISceneLoader sceneLoader, IGameFactory gameFactory,
             IUIFactory uiFactory,ICoinService coinService, IAudioService audioService)
         {
             _stateMachine = stateMachine;
@@ -37,14 +37,10 @@ namespace CodeBase.States
             _audioService = audioService;
         }
 
-        // public void Enter(string sceneName) => 
-        //     _sceneLoader.Load(sceneName, InitGameWorld);
+        
+        public void Enter() => 
+            _sceneLoader.Load(AllTags.GameScene, InitGameWorld);
 
-
-        public void Enter()
-        {
-            _sceneLoader.Load("Main",InitGameWorld);
-        }
 
         private void InitGameWorld()
         {
@@ -54,30 +50,28 @@ namespace CodeBase.States
             
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
-            
             GameView hud = CreateHUD();
+            hud.InputReporter.Initialize(uiCamera);
+            
             
             HpBar hpBar = CreateHpBar(hud.transform);
             hpBar.Initialize(_stateMachine,_audioService);
             
             CoinsView coinCounter = CreateCoinView(hud); 
             coinCounter.Initialize(_coinService);
-
             _coinService.ResetCoin();
             
             ChunkSpawner geometry = CreateGeometry();
+            
             HeroMove hero = CreateHero();
+            hero.Initialize(hud.InputReporter);
             CameraFollow(gameCamera, hero);
             geometry.Initialize(hero.transform);
-                
-            hud.InputReporter.Initialize(uiCamera);
-            hero.Initialize(hud.InputReporter);
             
         }
 
         public void Exit()
         {
-            Debug.Log("LoadLevelStateExit");
         }
 
         private void CreateEventSystem() => 
@@ -91,20 +85,20 @@ namespace CodeBase.States
             _uiFactory.CreateBaseWindow(AssetPath.HUD).GetComponent<GameView>();
 
         private CoinsView CreateCoinView(GameView hud) => 
-            _uiFactory.CreateBaseWindow(AssetPath.CoinCounter, hud.transform, CoinCounterAnchoredPosition).GetComponent<CoinsView>();
+            _uiFactory.CreateBaseWindow(AssetPath.CoinCounter, hud.transform, _coinCounterAnchoredPosition).GetComponent<CoinsView>();
 
         private HpBar CreateHpBar(Transform hud) => 
             _uiFactory.CreateBaseWindow(AssetPath.HpBar, hud.transform).GetComponent<HpBar>();
 
         private Camera CreateGameCamera() =>
-            _gameFactory.CreateBaseGameObject(AssetPath.GameCamera, GameCameraStartPosition, 
-                Quaternion.Euler(GameCameraStartRotation), null).GetComponent<Camera>();
+            _gameFactory.CreateBaseGameObject(AssetPath.GameCamera, _gameCameraStartPosition, 
+                Quaternion.Euler(_gameCameraStartRotation), null).GetComponent<Camera>();
 
         private ChunkSpawner CreateGeometry() => 
             _gameFactory.CreateBaseGameObject(AssetPath.Geometry, Vector3.zero, Quaternion.identity, null).GetComponent<ChunkSpawner>();
 
         private HeroMove CreateHero() => 
-            _gameFactory.CreateBaseGameObject(AssetPath.Hero,PlayerStartPosition,
+            _gameFactory.CreateBaseGameObject(AssetPath.Hero,_playerStartPosition,
                 Quaternion.identity,null).GetComponent<HeroMove>();
 
         private static void CameraFollow(Camera gameCamera, HeroMove hero) => 

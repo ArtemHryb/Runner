@@ -10,19 +10,15 @@ namespace CodeBase.Hero
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private float _movementSpeed = 2f;
 
-        private const int spacing = 1;
-        private const float duration = 0.5f;
+        private const int Spacing = 1;
+        private const float Duration = 0.5f;
         
         private Line _currentLine = Line.Middle;
-
         private IInputReporter _inputReporter;
-        
-        
 
         public void Initialize(IInputReporter inputReporter)
         {
             _inputReporter = inputReporter;
-
             Subscribe();
         }
         private void Update()
@@ -31,19 +27,22 @@ namespace CodeBase.Hero
 
             _characterController.Move(_movementSpeed * movementVector * Time.deltaTime);
         }
-
+        
         private void OnDestroy() => 
-            UnSubscribe();
+        UnSubscribe();
 
         private void MoveLeft()
         {
             if (_currentLine != Line.Left)
             {
                 _currentLine--;
-                float targetX = transform.localPosition.x - spacing;
-
-                transform.DOLocalMoveX(Mathf.RoundToInt(targetX), duration)
+                float targetX = transform.localPosition.x - Spacing;
+                transform.DOLocalMoveX(Mathf.RoundToInt(targetX), Duration)
                     .SetEase(Ease.OutQuad);
+                if (transform == null)
+                {
+                    Debug.Log("Transform null");
+                }
             }
         }
 
@@ -52,10 +51,13 @@ namespace CodeBase.Hero
             if (_currentLine != Line.Right)
             {
                 _currentLine++;
-                float targetX = transform.localPosition.x + spacing;
-                
-                transform.DOLocalMoveX(Mathf.RoundToInt(targetX), duration)
+                float targetX = transform.localPosition.x + Spacing;
+                transform.DOLocalMoveX(Mathf.RoundToInt(targetX), Duration)
                     .SetEase(Ease.OutQuad);
+                if (transform == null)
+                {
+                    Debug.Log("Transform null");
+                }
             }
         }
 

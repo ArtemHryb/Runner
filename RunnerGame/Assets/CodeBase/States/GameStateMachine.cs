@@ -9,7 +9,7 @@ using CodeBase.Services.CoinService;
 
 namespace CodeBase.States
 {
-    public class GameStateMachine : IService
+    public class GameStateMachine : IGameStateMachine
     {
         private readonly Dictionary<Type,IExitableState> _states;
         private IExitableState _activeState;

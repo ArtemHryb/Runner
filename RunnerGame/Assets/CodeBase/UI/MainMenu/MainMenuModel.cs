@@ -6,10 +6,7 @@ namespace CodeBase.UI.MainMenu
 {
     public class MainMenuModel
     {
-        private const string MainScene = "Main";
-        
-        public void MoveToGameScene(GameStateMachine stateMachine) => 
-            // stateMachine.Enter<LoadLevelState,string>(MainScene);
+        public void MoveToGameScene(IGameStateMachine stateMachine) => 
             stateMachine.Enter<LoadLevelState>();
 
         public void Exit() => 

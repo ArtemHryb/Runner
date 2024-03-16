@@ -10,13 +10,13 @@ namespace CodeBase.UI.MainMenu
     {
         [SerializeField] private MainMenuView _mainMenuView;
 
-        private GameStateMachine _stateMachine;
+        private IGameStateMachine _stateMachine;
         private ISaveTheBestScore _saveTheBestScore;
         private IAudioService _audioService;
 
         private MainMenuModel _mainMenuModel = new();
 
-        public void Initialize(GameStateMachine stateMachine,ISaveTheBestScore saveTheBestScore, IAudioService audioService)
+        public void Initialize(IGameStateMachine stateMachine,ISaveTheBestScore saveTheBestScore, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _saveTheBestScore = saveTheBestScore;

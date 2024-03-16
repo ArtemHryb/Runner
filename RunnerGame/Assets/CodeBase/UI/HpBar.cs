@@ -15,10 +15,10 @@ namespace CodeBase.UI
 
         private int _currentHp;
         private int _maxHp = 3;
-        private GameStateMachine _stateMachine;
+        private IGameStateMachine _stateMachine;
         private IAudioService _audioService;
 
-        public void Initialize(GameStateMachine stateMachine, IAudioService audioService)
+        public void Initialize(IGameStateMachine stateMachine, IAudioService audioService)
         {
             _stateMachine = stateMachine;
             _audioService = audioService;

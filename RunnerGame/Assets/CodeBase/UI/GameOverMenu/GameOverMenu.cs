@@ -7,16 +7,13 @@ namespace CodeBase.UI.GameOverMenu
 {
     public class GameOverMenu : MonoBehaviour
     {
-        private const string MainScene = "Main";
-        private const string Gamebootstrapper = "GameBootstrapper";
-
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _mainMenuButton;
         [SerializeField] private TMP_Text _scoreText;
 
-        private GameStateMachine _stateMachine;
+        private IGameStateMachine _stateMachine;
         
-        public void Initialize(GameStateMachine stateMachine,int score)
+        public void Initialize(IGameStateMachine stateMachine,int score)
         {
             _stateMachine = stateMachine;
             _scoreText.text = score.ToString();
@@ -29,30 +26,14 @@ namespace CodeBase.UI.GameOverMenu
 
         private void MainMenuButtonBehaviour()
         {
-            ClearScene();
             _stateMachine.Enter<MainMenuState>();
             Time.timeScale = 1f;
         }
 
         private void RestartButtonBehaviour()
         {
-            ClearScene();
-            // _stateMachine.Enter<LoadLevelState,string>(MainScene);
             _stateMachine.Enter<LoadLevelState>();
             Time.timeScale = 1f;
-        }
-        
-        private void ClearScene()
-        {
-            GameObject[] allObjects = FindObjectsOfType<GameObject>();
-            foreach (GameObject obj in allObjects)
-            {
-                if(obj == GameObject.Find(Gamebootstrapper))
-                    return;
-
-                if(!obj.TryGetComponent(out AudioSource audioSource) && !obj.TryGetComponent(out AudioListener audioListener))
-                    Destroy(obj);
-            }
         }
     }
 }

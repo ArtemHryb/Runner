@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Musics:
   - _musicType: 0
-    _audioClip: {fileID: 8300000, guid: 0470fbf56974a224b9f01ff6fec6c069, type: 3}
+    _audioClip: {fileID: 8300000, guid: 9392df22c8c18c440a147be4b268fe91, type: 3}
   - _musicType: 1
     _audioClip: {fileID: 8300000, guid: 0470fbf56974a224b9f01ff6fec6c069, type: 3}

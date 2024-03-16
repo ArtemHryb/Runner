@@ -10,15 +10,13 @@ namespace CodeBase.States
 {
     public class MainMenuState : IState
     {
-        private const string BootScene = "Boot";
-
-        private readonly GameStateMachine _stateMachine;
+        private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
         private readonly IUIFactory _uiFactory;
         private readonly ISaveTheBestScore _saveTheBestScore;
         private readonly IAudioService _audioService;
 
-        public MainMenuState(GameStateMachine stateMachine,ISceneLoader sceneLoader,
+        public MainMenuState(IGameStateMachine stateMachine,ISceneLoader sceneLoader,
             IUIFactory uiFactory,ISaveTheBestScore saveTheBestScore,IAudioService audioService)
         {
             _stateMachine = stateMachine;
@@ -30,20 +28,17 @@ namespace CodeBase.States
         
         public void Exit()
         {
-            
         }
 
-        public void Enter()
-        {
-            //_sceneLoader.Load(BootScene, Initialize);
-            Initialize();
-        }
+        public void Enter() => 
+            _sceneLoader.Load(AllTags.MenuScene, Initialize);
 
         private void Initialize()
         {
             _saveTheBestScore.Load();
             _uiFactory.CreateBaseWindow(AssetPath.UICamera);
-           MainMenuController mainMenu = _uiFactory.CreateBaseWindow(AssetPath.MainMenu, null).GetComponent<MainMenuController>();
+           MainMenuController mainMenu = _uiFactory.CreateBaseWindow(AssetPath.MainMenu, null)
+               .GetComponent<MainMenuController>();
            mainMenu.Initialize(_stateMachine,_saveTheBestScore,_audioService);
            _audioService.PlayMusic(MusicType.MainMenu);
         }

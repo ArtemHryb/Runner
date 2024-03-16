@@ -10,7 +10,6 @@ namespace CodeBase.States
 {
     public class BootstrapState : IState
     {
-        private const string BootScene = "Boot";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -25,10 +24,8 @@ namespace CodeBase.States
             RegisterServices();
         }
 
-        public void Enter()
-        {
-            _sceneLoader.Load(BootScene, onLoaded: EnterMenu);
-        }
+        public void Enter() => 
+            EnterMenu();
 
         private void EnterMenu() => 
             _stateMachine.Enter<MainMenuState>();
@@ -40,9 +37,12 @@ namespace CodeBase.States
 
         private void RegisterServices()
         {
+            _services.RegisterSingle<IGameStateMachine>(_stateMachine);
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
             _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>()));
+            //_services.RegisterSingle<ICoroutineRunner>(new CoroutineRunner());
+            _services.RegisterSingle<ISceneLoader>(new SceneLoader(_services.Single<ICoroutineRunner>()));
             _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IAssetProvider>(),
                 _services.Single<IGameFactory>()));
             _services.RegisterSingle<ICoinService>(new CoinService(_services.Single<IAudioService>()));
