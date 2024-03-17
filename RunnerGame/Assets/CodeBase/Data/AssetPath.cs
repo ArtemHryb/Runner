@@ -13,6 +13,7 @@ namespace CodeBase.Data
         public const string HpBar = "UI/HPBar";
         public const string CoinCounter = "UI/CoinCounter";
         public const string LoseWindow = "UI/GameOverWindow";
+        public const string PregameMenu = "UI/PregameMenu";
 
         public const string Geometry = "LevelItems/Geometry";
 

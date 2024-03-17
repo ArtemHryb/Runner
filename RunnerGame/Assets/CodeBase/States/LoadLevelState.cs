@@ -45,25 +45,27 @@ namespace CodeBase.States
         private void InitGameWorld()
         {
             _audioService.PlayMusic(MusicType.Game);
+
             CreateDirectionalLight();
             CreateEventSystem();
-            
+
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
             GameView hud = CreateHUD();
-            hud.InputReporter.Initialize(uiCamera);
-            
-            
-            HpBar hpBar = CreateHpBar(hud.transform);
+            CreatePregameWindow(hud);
+
+
+           HpBar hpBar = CreateHpBar(hud.transform);
             hpBar.Initialize(_stateMachine,_audioService);
-            
-            CoinsView coinCounter = CreateCoinView(hud); 
+
+            CoinsView coinCounter = CreateCoinView(hud);
             coinCounter.Initialize(_coinService);
             _coinService.ResetCoin();
-            
+
             ChunkSpawner geometry = CreateGeometry();
-            
+
             HeroMove hero = CreateHero();
+            hud.InputReporter.Initialize(uiCamera);
             hero.Initialize(hud.InputReporter);
             CameraFollow(gameCamera, hero);
             geometry.Initialize(hero.transform);
@@ -83,6 +85,9 @@ namespace CodeBase.States
 
         private GameView CreateHUD() => 
             _uiFactory.CreateBaseWindow(AssetPath.HUD).GetComponent<GameView>();
+
+        private void CreatePregameWindow(GameView hud) => 
+            _uiFactory.CreateBaseWindow(AssetPath.PregameMenu,hud.transform);
 
         private CoinsView CreateCoinView(GameView hud) => 
             _uiFactory.CreateBaseWindow(AssetPath.CoinCounter, hud.transform, _coinCounterAnchoredPosition).GetComponent<CoinsView>();

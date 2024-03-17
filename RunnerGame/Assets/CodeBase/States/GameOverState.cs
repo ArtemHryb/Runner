@@ -32,7 +32,7 @@ namespace CodeBase.States
         public void Enter()
         {
              _bestScore.Save();
-            
+             
             _audioService.PlaySfx(SfxType.GameOver);
             _audioService.StopMusic();
             

@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Audio;
+﻿using CodeBase.Audio;
 using CodeBase.Hero;
 using CodeBase.Services.Audio;
 using CodeBase.States;

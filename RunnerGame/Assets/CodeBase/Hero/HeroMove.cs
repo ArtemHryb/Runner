@@ -24,7 +24,6 @@ namespace CodeBase.Hero
         private void Update()
         {
             Vector3 movementVector = Vector3.forward;
-
             _characterController.Move(_movementSpeed * movementVector * Time.deltaTime);
         }
         
@@ -39,10 +38,7 @@ namespace CodeBase.Hero
                 float targetX = transform.localPosition.x - Spacing;
                 transform.DOLocalMoveX(Mathf.RoundToInt(targetX), Duration)
                     .SetEase(Ease.OutQuad);
-                if (transform == null)
-                {
-                    Debug.Log("Transform null");
-                }
+                
             }
         }
 
@@ -54,10 +50,6 @@ namespace CodeBase.Hero
                 float targetX = transform.localPosition.x + Spacing;
                 transform.DOLocalMoveX(Mathf.RoundToInt(targetX), Duration)
                     .SetEase(Ease.OutQuad);
-                if (transform == null)
-                {
-                    Debug.Log("Transform null");
-                }
             }
         }
 
