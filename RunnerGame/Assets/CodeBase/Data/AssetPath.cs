@@ -2,7 +2,7 @@ namespace CodeBase.Data
 {
     public static class AssetPath
     {
-        public const string Hero = "Stickman/hero";
+        public const string Hero = "Hero/hero";
         
         public const string GameCamera = "GameCamera";
         public const string UICamera = "UICamera";
@@ -16,6 +16,9 @@ namespace CodeBase.Data
         public const string PregameMenu = "UI/PregameMenu";
 
         public const string Geometry = "LevelItems/Geometry";
+
+        public const string Vase = "LevelItems/Obstacles/Vase";
+        public const string LockGate = "LevelItems/Obstacles/LockGate";
 
         public const string DirectionalLight = "DirectionalLight";
         public const string EventSystem = "EventSystem";

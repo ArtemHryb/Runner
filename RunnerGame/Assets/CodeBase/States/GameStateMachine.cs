@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Factories;
+using CodeBase.Logic.Obstacle;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
 using CodeBase.Services.Audio;
@@ -19,10 +20,14 @@ namespace CodeBase.States
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,services),
+                
                 [typeof(MainMenuState)] = new MainMenuState(this,sceneLoader, services.Single<IUIFactory>(),
                         services.Single<ISaveTheBestScore>(),services.Single<IAudioService>()),
+                
                 [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
-                    services.Single<IUIFactory>(),services.Single<ICoinService>(),services.Single<IAudioService>()),
+                    services.Single<IUIFactory>(),services.Single<ICoinService>(),
+                    services.Single<IAudioService>()),
+                
                 [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>(),
                     services.Single<ISaveTheBestScore>(),services.Single<IAudioService>())
             };

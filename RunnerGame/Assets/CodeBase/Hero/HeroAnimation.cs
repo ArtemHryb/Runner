@@ -4,19 +4,17 @@ namespace CodeBase.Hero
 {
     public class HeroAnimation : MonoBehaviour
     {
-        private static readonly int RunHash = Animator.StringToHash("Run");
-        private static readonly int JumpHash = Animator.StringToHash("Jump");
-        private static readonly int DieHash = Animator.StringToHash("Die");
+        private readonly int _runHash = Animator.StringToHash("Run");
+        private readonly int _jumpHash = Animator.StringToHash("Jump");
+        private readonly int _dieHash = Animator.StringToHash("Die");
+        private readonly int _hitHash = Animator.StringToHash("Hit");
         
        [SerializeField] private Animator _animator;
 
-       private void PlayRun() => _animator.SetTrigger(RunHash);
-       private void PlayDeath() => _animator.SetTrigger(DieHash);
-       private void PlayJump() => _animator.SetTrigger(JumpHash);
+       public void PlayRun() => _animator.SetTrigger(_runHash);
+       public void PlayDeath() => _animator.SetTrigger(_dieHash);
+       public void PlayJump() => _animator.SetTrigger(_jumpHash);
 
-        private void Start()
-        {
-            PlayRun();
-        }
+        private void Start() => PlayRun();
     } 
 }

@@ -1,5 +1,6 @@
 ﻿using CodeBase.Factories;
 using CodeBase.Factories.AssetProviding;
+using CodeBase.Logic.Obstacle;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
 using CodeBase.Services.Audio;

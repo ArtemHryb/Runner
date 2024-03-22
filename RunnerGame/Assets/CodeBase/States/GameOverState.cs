@@ -31,13 +31,17 @@ namespace CodeBase.States
 
         public void Enter()
         {
-             _bestScore.Save();
-             
+            GameObject dotWeen = GameObject.Find("[DOTween]");
+            if (dotWeen!= null) 
+                Object.Destroy(dotWeen);
+
+            _bestScore.Save();
+
             _audioService.PlaySfx(SfxType.GameOver);
-            _audioService.StopMusic();
-            
+             _audioService.StopMusic();
+
             CreateLoseMenu();
-            
+
             Time.timeScale = 0f;
         }
 

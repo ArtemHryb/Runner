@@ -3,6 +3,7 @@ using CodeBase.CameraLogic;
 using CodeBase.Data;
 using CodeBase.Factories;
 using CodeBase.Hero;
+using CodeBase.Logic.Obstacle;
 using CodeBase.Logic.Spawners;
 using CodeBase.SceneLoading;
 using CodeBase.Services.Audio;
@@ -54,8 +55,7 @@ namespace CodeBase.States
             GameView hud = CreateHUD();
             CreatePregameWindow(hud);
 
-
-           HpBar hpBar = CreateHpBar(hud.transform);
+            HpBar hpBar = CreateHpBar(hud.transform);
             hpBar.Initialize(_stateMachine,_audioService);
 
             CoinsView coinCounter = CreateCoinView(hud);
@@ -64,12 +64,12 @@ namespace CodeBase.States
 
             ChunkSpawner geometry = CreateGeometry();
 
+
             HeroMove hero = CreateHero();
             hud.InputReporter.Initialize(uiCamera);
             hero.Initialize(hud.InputReporter);
             CameraFollow(gameCamera, hero);
             geometry.Initialize(hero.transform);
-            
         }
 
         public void Exit()

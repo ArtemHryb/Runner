@@ -19,6 +19,7 @@ namespace CodeBase.Services.GameInput
         
         public event Action OnSwipeLeft;
         public event Action OnSwipeRight;
+        public event Action OnSwipeUp;
 
         private Vector2 _startTouchPosition;
         private Vector2 _endTouchPosition;
@@ -61,7 +62,7 @@ namespace CodeBase.Services.GameInput
             }
             else if (_swipeAngle > RightSwipeMaxAngle && _swipeAngle <= UpSwipeMaxAngle)
             {
-//Up               
+                OnSwipeUp?.Invoke();
             }
             else if (_swipeAngle > UpSwipeMaxAngle || _swipeAngle <= LeftSwipeMaxAngle)
             {

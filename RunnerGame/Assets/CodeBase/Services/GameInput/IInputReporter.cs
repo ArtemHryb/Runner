@@ -6,5 +6,6 @@ namespace CodeBase.Services.GameInput
     {
         event Action OnSwipeLeft;
         event Action OnSwipeRight;
+        event Action OnSwipeUp;
     }
 }
