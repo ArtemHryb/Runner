@@ -3,7 +3,6 @@ using CodeBase.CameraLogic;
 using CodeBase.Data;
 using CodeBase.Factories;
 using CodeBase.Hero;
-using CodeBase.Logic.Obstacle;
 using CodeBase.Logic.Spawners;
 using CodeBase.SceneLoading;
 using CodeBase.Services.Audio;
@@ -17,8 +16,13 @@ namespace CodeBase.States
     {
         private readonly Vector3 _gameCameraStartPosition = new (0.35f, 4.8f, -1.57f);
         private readonly Vector3 _gameCameraStartRotation = new (30f, 0f, 0f);
+        
         private readonly Vector3 _playerStartPosition = new (0f, 0.28f, 0f);
         private readonly Vector2 _coinCounterAnchoredPosition = new(150f, -130f);
+        
+        private readonly Vector3 _directionalLightPosition = new (0f, 3f, 0f);
+        private readonly Vector3 _directionalLightRotation = new (90f, 0f, 0f);
+        
         
         private readonly IGameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
@@ -56,7 +60,7 @@ namespace CodeBase.States
             CreatePregameWindow(hud);
 
             HpBar hpBar = CreateHpBar(hud.transform);
-            hpBar.Initialize(_stateMachine);//,_audioService);
+            hpBar.Initialize(_stateMachine);
 
             CoinsView coinCounter = CreateCoinView(hud);
             coinCounter.Initialize(_coinService);
@@ -79,8 +83,8 @@ namespace CodeBase.States
             _gameFactory.CreateBaseGameObject(AssetPath.EventSystem, Vector3.zero, Quaternion.identity, null);
 
         private void CreateDirectionalLight() =>
-            _gameFactory.CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f, 3f, 0f),
-                Quaternion.Euler(50f, -30f, 0f), null);
+            _gameFactory.CreateBaseGameObject(AssetPath.DirectionalLight, _directionalLightPosition,
+               Quaternion.Euler(_directionalLightRotation), null);
 
         private GameView CreateHUD() => 
             _uiFactory.CreateBaseWindow(AssetPath.HUD).GetComponent<GameView>();

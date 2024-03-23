@@ -1,6 +1,4 @@
-﻿using CodeBase.Audio;
-using CodeBase.Hero;
-using CodeBase.Services.Audio;
+﻿using CodeBase.Hero;
 using CodeBase.States;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,13 +13,9 @@ namespace CodeBase.UI
         private int _currentHp;
         private int _maxHp = 3;
         private IGameStateMachine _stateMachine;
-       // private IAudioService _audioService;
 
-        public void Initialize(IGameStateMachine stateMachine) //, IAudioService audioService
-        {
+        public void Initialize(IGameStateMachine stateMachine) => 
             _stateMachine = stateMachine;
-            // _audioService = audioService;
-        }
 
         private void Start()
         {
@@ -33,7 +27,6 @@ namespace CodeBase.UI
 
         private void TakeDamage()
         {
-            //_audioService.PlaySfx(SfxType.HitPlayer);
             _currentHp -= 1;
             
             

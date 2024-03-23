@@ -29,7 +29,7 @@ namespace CodeBase.States
                     services.Single<IAudioService>()),
                 
                 [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>(),
-                    services.Single<ISaveTheBestScore>(),services.Single<IAudioService>())
+                    services.Single<ISaveTheBestScore>(),services.Single<IAudioService>(),services.Single<ICoinService>())
             };
         }
         public void Enter<TState>() where TState : class, IState

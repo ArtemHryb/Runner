@@ -9,14 +9,17 @@ namespace CodeBase.UI.GameOverMenu
     {
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _mainMenuButton;
-        [SerializeField] private TMP_Text _scoreText;
+
+        [SerializeField] private TMP_Text _currentScoreText;
+        [SerializeField] private TMP_Text _bestScoreText;
 
         private IGameStateMachine _stateMachine;
         
-        public void Initialize(IGameStateMachine stateMachine,int score)
+        public void Initialize(IGameStateMachine stateMachine,int currentScore,int bestScore)
         {
             _stateMachine = stateMachine;
-            _scoreText.text = score.ToString();
+            _currentScoreText.text = currentScore.ToString();
+            _bestScoreText.text = bestScore.ToString();
         }
         private void Awake()
         {

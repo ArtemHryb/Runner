@@ -2,7 +2,8 @@
 {
     public enum ObstacleType
     {
-        Vase =0,
-        LockGate
+        Vase = 0,
+        LockGate,
+        JumpGate,
     }
 }
