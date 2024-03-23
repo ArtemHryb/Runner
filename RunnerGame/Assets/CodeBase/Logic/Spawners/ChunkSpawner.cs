@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using CodeBase.Factories;
+using CodeBase.Hero;
+using CodeBase.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,10 +18,18 @@ namespace CodeBase.Logic.Spawners
 
         private int _distanceToSpawn = 30;
 
-        public void Initialize(Transform player)
+        // public void Initialize(Transform player)
+        // {
+        //     _spawnedChunks.Add(_firstChunk);
+        //     _player = player;
+        // }
+
+        private void Start()
         {
+            _player = FindObjectOfType<HeroMove>().transform;
+            //_player = AllServices.Container.Single<IGameFactory>().Player;
+            _firstChunk = Instantiate(_firstChunk, Vector3.zero, Quaternion.identity);
             _spawnedChunks.Add(_firstChunk);
-            _player = player;
         }
 
         private void Update()
@@ -37,12 +49,12 @@ namespace CodeBase.Logic.Spawners
                 _spawnedChunks[_spawnedChunks.Count - 1].End.position - newChunk.Begin.localPosition;
             
             _spawnedChunks.Add(newChunk);
-
             if (_spawnedChunks.Count >=3)
             {
                 Destroy(_spawnedChunks[0].gameObject);
                 _spawnedChunks.RemoveAt(0);
             }
+            
         }
     }
 }

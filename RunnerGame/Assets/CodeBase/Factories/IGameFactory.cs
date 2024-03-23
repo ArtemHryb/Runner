@@ -1,5 +1,4 @@
-﻿using CodeBase.Logic.Obstacle;
-using CodeBase.Services;
+﻿using CodeBase.Services;
 using UnityEngine;
 
 namespace CodeBase.Factories

@@ -53,6 +53,7 @@ namespace CodeBase.States
 
             CreateDirectionalLight();
             CreateEventSystem();
+            CreateGeometry();
 
             Camera gameCamera = CreateGameCamera();
             Camera uiCamera = CreateUICamera();
@@ -66,13 +67,12 @@ namespace CodeBase.States
             coinCounter.Initialize(_coinService);
             _coinService.ResetCoin();
 
-            ChunkSpawner geometry = CreateGeometry();
 
             HeroMove hero = CreateHero();
             hud.InputReporter.Initialize(uiCamera);
             hero.Initialize(hud.InputReporter);
             CameraFollow(gameCamera, hero);
-            geometry.Initialize(hero.transform);
+            //geometry.Initialize(hero.transform);
         }
 
         public void Exit()
