@@ -6,7 +6,6 @@ namespace CodeBase.Data
         
         public const string GameCamera = "GameCamera";
         public const string UICamera = "UICamera";
-        public const string InputCamera = "InputCamera";
 
         public const string HUD = "UI/HUD";
         public const string MainMenu = "UI/MainMenu";
@@ -24,10 +23,10 @@ namespace CodeBase.Data
         public const string EventSystem = "EventSystem";
 
 
-        public const string SfxHolder = "Audio/SfxHolder";
-        public const string SfxAudioSource = "SfxAudioSource";
-        public const string MusicHolder = "Audio/MusicHolder";
-        public const string MusicAudioSource = "MusicAudioSource";
-        public const string AudioListener = "AudioListener";
+        public const string SfxHolder = "Audio/Data/SfxHolder";
+        public const string MusicHolder = "Audio/Data/MusicHolder";
+        public const string SfxAudioSource = "Audio/SfxAudioSource";
+        public const string MusicAudioSource = "Audio/MusicAudioSource";
+        public const string AudioListener = "Audio/AudioListener";
     }
 }

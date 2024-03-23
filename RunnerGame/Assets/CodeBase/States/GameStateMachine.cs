@@ -24,7 +24,7 @@ namespace CodeBase.States
                 [typeof(MainMenuState)] = new MainMenuState(this,sceneLoader, services.Single<IUIFactory>(),
                         services.Single<ISaveTheBestScore>(),services.Single<IAudioService>()),
                 
-                [typeof(LoadLevelState)] = new LoadLevelState(this,sceneLoader, services.Single<IGameFactory>(),
+                [typeof(LoadGameState)] = new LoadGameState(this,sceneLoader, services.Single<IGameFactory>(),
                     services.Single<IUIFactory>(),services.Single<ICoinService>(),
                     services.Single<IAudioService>()),
                 

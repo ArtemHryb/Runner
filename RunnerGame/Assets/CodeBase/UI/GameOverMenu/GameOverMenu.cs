@@ -32,7 +32,7 @@ namespace CodeBase.UI.GameOverMenu
 
         private void RestartButtonBehaviour()
         {
-            _stateMachine.Enter<LoadLevelState>();
+            _stateMachine.Enter<LoadGameState>();
             Time.timeScale = 1f;
         }
     }

@@ -15,12 +15,12 @@ namespace CodeBase.UI
         private int _currentHp;
         private int _maxHp = 3;
         private IGameStateMachine _stateMachine;
-        private IAudioService _audioService;
+       // private IAudioService _audioService;
 
-        public void Initialize(IGameStateMachine stateMachine, IAudioService audioService)
+        public void Initialize(IGameStateMachine stateMachine) //, IAudioService audioService
         {
             _stateMachine = stateMachine;
-            _audioService = audioService;
+            // _audioService = audioService;
         }
 
         private void Start()
@@ -33,7 +33,7 @@ namespace CodeBase.UI
 
         private void TakeDamage()
         {
-            _audioService.PlaySfx(SfxType.HitPlayer);
+            //_audioService.PlaySfx(SfxType.HitPlayer);
             _currentHp -= 1;
             
             

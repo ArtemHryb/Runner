@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5203929191117118441}
-  - component: {fileID: 820602586717722541}
   - component: {fileID: 6231012647816422875}
+  - component: {fileID: 2242760954347718771}
   m_Layer: 0
   m_Name: LockGate
   m_TagString: Untagged
@@ -36,18 +36,6 @@ Transform:
   - {fileID: 7917129914376716271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &820602586717722541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3879836283227346711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a3eb79b73e4cd59f9662b0bc454af1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &6231012647816422875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,6 +57,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7819219, y: 1.5061386, z: 0.25001463}
   m_Center: {x: 0.01496616, y: 0.0007830262, z: 0.0072532445}
+--- !u!114 &2242760954347718771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879836283227346711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b627709308648398a0a01ede95e7832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1251847376229626215
 PrefabInstance:
   m_ObjectHideFlags: 0

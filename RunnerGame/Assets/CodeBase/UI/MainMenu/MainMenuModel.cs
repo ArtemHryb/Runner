@@ -7,7 +7,7 @@ namespace CodeBase.UI.MainMenu
     public class MainMenuModel
     {
         public void MoveToGameScene(IGameStateMachine stateMachine) => 
-            stateMachine.Enter<LoadLevelState>();
+            stateMachine.Enter<LoadGameState>();
 
         public void Exit() => 
             Application.Quit();

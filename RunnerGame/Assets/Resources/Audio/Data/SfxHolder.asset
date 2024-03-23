@@ -21,3 +21,5 @@ MonoBehaviour:
     _audioClip: {fileID: 8300000, guid: 73d6ab53a2fc4c64f9125a3b079631c8, type: 3}
   - _sfxType: 3
     _audioClip: {fileID: 8300000, guid: 491e2b364bc9b324eb1ddd4ec6389a6e, type: 3}
+  - _sfxType: 4
+    _audioClip: {fileID: 8300000, guid: bb9e9f93655eae0418d841401df06582, type: 3}

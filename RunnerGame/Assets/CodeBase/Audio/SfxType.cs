@@ -4,7 +4,8 @@
     {
         Click = 0,
         PickCoin = 1,
-        HitPlayer = 2,
-        GameOver = 3
+        BrokeGate = 2,
+        GameOver = 3,
+        BrokeVase = 4
     }
 }

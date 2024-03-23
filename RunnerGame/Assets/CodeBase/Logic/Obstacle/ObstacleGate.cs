@@ -1,17 +1,17 @@
-﻿using CodeBase.Hero;
+﻿using CodeBase.Audio;
+using CodeBase.Hero;
 using UnityEngine;
 
 namespace CodeBase.Logic.Obstacle
 {
-    public class ObstaclesBehaviour : MonoBehaviour
+    public class ObstacleGate : ObstacleBase
     {
-        private const string PlayerTag = "Player";
-
-        private void OnTriggerEnter(Collider other)
+        protected override void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag(PlayerTag))
             {
                 other.GetComponent<HeroHealth>().TakeDamage();
+                _audioService.PlaySfx(SfxType.BrokeGate);
             }
             Destroy(gameObject);
         }
