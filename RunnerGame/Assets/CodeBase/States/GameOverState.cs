@@ -42,7 +42,7 @@ namespace CodeBase.States
             _bestScore.Save();
 
             _audioService.PlaySfx(SfxType.GameOver);
-             _audioService.StopMusic();
+            _audioService.StopMusic();
 
             CreateLoseMenu();
 

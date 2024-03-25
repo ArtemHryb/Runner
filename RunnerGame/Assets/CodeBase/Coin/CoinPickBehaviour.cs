@@ -2,7 +2,7 @@
 using CodeBase.Services.CoinService;
 using UnityEngine;
 
-namespace CodeBase.Logic.Coin
+namespace CodeBase.Coin
 {
     public class CoinPickBehaviour : MonoBehaviour
     {
