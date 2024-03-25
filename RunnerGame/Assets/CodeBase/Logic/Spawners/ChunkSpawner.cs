@@ -17,13 +17,6 @@ namespace CodeBase.Logic.Spawners
         private List<Chunk> _spawnedChunks = new();
 
         private int _distanceToSpawn = 30;
-
-        // public void Initialize(Transform player)
-        // {
-        //     _spawnedChunks.Add(_firstChunk);
-        //     _player = player;
-        // }
-
         private void Start()
         {
             _player = FindObjectOfType<HeroMove>().transform;
