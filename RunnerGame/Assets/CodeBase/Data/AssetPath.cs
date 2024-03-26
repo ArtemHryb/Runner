@@ -17,6 +17,8 @@ namespace CodeBase.Data
         public const string Geometry = "LevelItems/Geometry";
         public const string DirectionalLight = "DirectionalLight";
 
+        public const string Explosion = "Explosion";
+
         
         public const string Vase = "LevelItems/Obstacles/Vase";
         public const string LockGate = "LevelItems/Obstacles/LockGate";

@@ -29,7 +29,8 @@ namespace CodeBase.Factories
 
         private void CreateDirectionalLight()
         {
-            CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f,3f,0f), Quaternion.Euler(new Vector3(30f, 0f, 0f)),
+            CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f,3f,0f),
+                Quaternion.Euler(new Vector3(30f, 0f, 0f)),
                 null);
         }
 
@@ -56,7 +57,6 @@ namespace CodeBase.Factories
         }
         private void CreateUICamera() =>
             Camera = _assetProvider.Initialize<Camera>(AssetPath.UICamera);
-
         public GameObject CreateBaseGameObject(string path, Vector3 at, Quaternion rotation, Transform parent) => 
             Object.Instantiate(_assetProvider.Initialize<GameObject>(path), at, rotation, parent);
 
