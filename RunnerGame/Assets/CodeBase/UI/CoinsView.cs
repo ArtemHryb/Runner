@@ -1,4 +1,6 @@
-﻿using CodeBase.Services.CoinService;
+﻿using System;
+using CodeBase.Services;
+using CodeBase.Services.CoinService;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +11,12 @@ namespace CodeBase.UI
         [SerializeField] private TMP_Text _coinText;
 
         private ICoinService _coinService;
+
+        private void Awake()
+        {
+            _coinService = AllServices.Container.Single<ICoinService>();
+            _coinService.OnCoinPick += UpdateText;
+        }
 
         public void Initialize(ICoinService coinService)
         {

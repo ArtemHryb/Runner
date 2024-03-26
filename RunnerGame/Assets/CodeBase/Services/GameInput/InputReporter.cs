@@ -1,4 +1,5 @@
 using System;
+using CodeBase.Factories;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -27,14 +28,13 @@ namespace CodeBase.Services.GameInput
         private float _swipeAngle;
 
         private Camera _camera;
-        
-        public void Initialize(Camera camera) => 
-            _camera = camera;
+        private IGameFactory _gameFactory;
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
+        private void Start() => 
+            _camera = AllServices.Container.Single<IGameFactory>().Camera;
+
+        public void OnPointerDown(PointerEventData eventData) => 
             _startTouchPosition = _camera.ScreenToWorldPoint(eventData.position);
-        }
 
         public void OnPointerUp(PointerEventData eventData)
         {

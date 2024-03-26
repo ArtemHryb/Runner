@@ -15,13 +15,13 @@ namespace CodeBase.Data
         public const string PregameMenu = "UI/Hud/PregameMenu";
 
         public const string Geometry = "LevelItems/Geometry";
+        public const string DirectionalLight = "DirectionalLight";
 
+        
         public const string Vase = "LevelItems/Obstacles/Vase";
         public const string LockGate = "LevelItems/Obstacles/LockGate";
         public const string JumpGate = "LevelItems/Obstacles/JumpGate";
-
-        public const string DirectionalLight = "DirectionalLight";
-        public const string EventSystem = "EventSystem";
+        
         
         public const string SfxHolder = "Audio/Data/SfxHolder";
         public const string MusicHolder = "Audio/Data/MusicHolder";

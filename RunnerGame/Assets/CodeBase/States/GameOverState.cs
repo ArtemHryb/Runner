@@ -54,8 +54,8 @@ namespace CodeBase.States
             _bestScore.Load();
             int score = _bestScore.TheBestScore;
             int currentScore = _coinService.Count;
-            Transform parent = GameObject.FindWithTag(AllTags.HUD).transform;
-            GameOverMenu loseWindow = _uiFactory.CreateBaseWindow(AssetPath.LoseWindow,parent).GetComponent<GameOverMenu>();
+            //Transform parent = GameObject.FindWithTag(AllTags.HUD).transform;
+            GameOverMenu loseWindow = _uiFactory.CreateUIWindow(AssetPath.LoseWindow,_uiFactory.HudRoot).GetComponent<GameOverMenu>();
             loseWindow.Initialize(_stateMachine,currentScore,score);
         }
     }

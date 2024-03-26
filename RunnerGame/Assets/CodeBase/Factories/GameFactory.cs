@@ -1,17 +1,61 @@
-﻿using CodeBase.Factories.AssetProviding;
-using CodeBase.Logic.Obstacle;
+﻿using CodeBase.CameraLogic;
+using CodeBase.Data;
+using CodeBase.Factories.AssetProviding;
+using CodeBase.Hero;
+using CodeBase.Services.GameInput;
 using UnityEngine;
 
 namespace CodeBase.Factories
 {
     public class GameFactory : IGameFactory
     {
+        public Transform Hero { get; private set; }
+        public Camera Camera { get; private set; }
+
         private readonly IAssetProvider _assetProvider;
 
-        public GameFactory(IAssetProvider assetProvider)
-        {
+        public GameFactory(IAssetProvider assetProvider) => 
             _assetProvider = assetProvider;
+
+        public void CreateGameObjects()
+        {
+            CreateDirectionalLight();
+            CreateUICamera();
+            CreateHero();
+            InitializeInput();
+            CreateGameCamera();
+            CreateGeometry();
         }
+
+        private void CreateDirectionalLight()
+        {
+            CreateBaseGameObject(AssetPath.DirectionalLight, new Vector3(0f,3f,0f), Quaternion.Euler(new Vector3(30f, 0f, 0f)),
+                null);
+        }
+
+        private void CreateHero()
+        { 
+            HeroMove hero = CreateBaseGameObject<HeroMove>(AssetPath.Hero);
+            Hero = hero.transform;
+        }
+
+        private void InitializeInput()
+        {
+            InputReporter input = Object.FindObjectOfType<InputReporter>();
+            Hero.GetComponent<HeroMove>().Initialize(input);
+        }
+
+        private void CreateGeometry() => 
+            CreateBaseGameObject(AssetPath.Geometry, Vector3.zero, Quaternion.identity, null);
+
+        private void CreateGameCamera()
+        {
+            GameObject camera = CreateBaseGameObject(AssetPath.GameCamera, Vector3.zero,
+                Quaternion.identity, null);
+            camera.GetComponent<CameraFollow>().Follow(Hero);
+        }
+        private void CreateUICamera() =>
+            Camera = _assetProvider.Initialize<Camera>(AssetPath.UICamera);
 
         public GameObject CreateBaseGameObject(string path, Vector3 at, Quaternion rotation, Transform parent) => 
             Object.Instantiate(_assetProvider.Initialize<GameObject>(path), at, rotation, parent);
@@ -20,41 +64,3 @@ namespace CodeBase.Factories
             Object.Instantiate(_assetProvider.Initialize<T>(path));
     }
 }
-       
-        
-
-        
-        
-        // public GameObject CreateHero(GameObject at) => 
-        //     Instantiate(AssetPath.Hero,at: at.transform.position);
-        //
-        // public void CreateGameCamera() => 
-        //     Instantiate(AssetPath.GameCamera);
-        //
-        // public GameObject CreateUICamera() => 
-        //     Instantiate(AssetPath.UICamera);
-        //
-        // public GameObject CreateGameView() =>
-        //     _assetProvider.Initialize<GameObject>(AssetPath.GameView);
-
-        // private static GameObject Instantiate(string path)
-
-        // {
-
-        //     var prefab = Resources.Load<GameObject>(path);
-
-        //     return Object.Instantiate(prefab);
-
-        // }
-
-        //
-
-        // private static GameObject Instantiate(string path, Vector3 at)
-
-        // {
-
-        //     var prefab = Resources.Load<GameObject>(path);
-
-        //     return Object.Instantiate(prefab,at,Quaternion.identity);
-
-        // }

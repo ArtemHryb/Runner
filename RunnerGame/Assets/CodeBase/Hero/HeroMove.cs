@@ -32,7 +32,7 @@ namespace CodeBase.Hero
             _inputReporter = inputReporter;
             Subscribe();
         }
-
+       
         private void Update()
         {
             Vector3 movementVector = Vector3.forward;
@@ -88,7 +88,6 @@ namespace CodeBase.Hero
             _inputReporter.OnSwipeRight -= MoveRight;
             _inputReporter.OnSwipeLeft -= MoveLeft;
             _inputReporter.OnSwipeUp -= Jump;
-
         }
 
         private void GroundCheck()

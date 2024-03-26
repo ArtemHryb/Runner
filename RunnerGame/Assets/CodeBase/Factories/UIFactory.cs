@@ -1,25 +1,65 @@
-﻿using CodeBase.Factories.AssetProviding;
+﻿using CodeBase.Data;
+using CodeBase.Factories.AssetProviding;
+using CodeBase.States;
+using CodeBase.UI;
+using CodeBase.UI.MainMenu;
 using UnityEngine;
 
 namespace CodeBase.Factories
 {
     public class UIFactory : IUIFactory
     {
-        private IAssetProvider _assetProvider;
+        public Transform HudRoot { get; private set; }
+        
+        private readonly IGameStateMachine _gameStateMachine;
+        private readonly IAssetProvider _assetProvider;
 
-        public UIFactory(IAssetProvider assetProvider)
+        public UIFactory(IGameStateMachine gameStateMachine,IAssetProvider assetProvider)
         {
+            _gameStateMachine = gameStateMachine;
             _assetProvider = assetProvider;
         }
 
-        public void CreateMainMenu()
+        public MainMenuController CreateMainMenu()
         {
+            CreateUIWindow(AssetPath.UICamera);
+            MainMenuController menu = CreateUIWindow(AssetPath.MainMenu).
+                GetComponent<MainMenuController>();
+           return menu;
+        }
+
+        public void CreateInGameHud()
+        {
+            CreateHudRoot();
+            CreatePregameWindow();
+            CreateCoinView();
+            CreateHpBar();
+        }
+
+        private void CreateHudRoot() => 
+            HudRoot = Object.Instantiate(_assetProvider.Initialize<Transform>(AssetPath.HUD));
+        private void CreatePregameWindow() =>
+            CreateUIWindow(AssetPath.PregameMenu, HudRoot);
+        private void CreateCoinView() => 
+            CreateUIWindow(AssetPath.CoinCounter,HudRoot);
+
+        private void CreateHpBar()
+        {
+            Transform hpBar = CreateUIWindow(AssetPath.HpBar,HudRoot);
+            hpBar.GetComponent<HpBar>().Initialize(_gameStateMachine);
+        }
+
+        public Transform CreateUIWindow(string path, Transform parentTransform)
+        {
+            Transform window = Object.Instantiate(_assetProvider
+                .Initialize<Transform>(path),parentTransform);
             
+            return window;
         }
 
         public GameObject CreateBaseWindow(string path, Transform parentTransform)
         {
-            Vector3 startPosition = new Vector3(0, 0, 0); //Screen.height
+            Vector3 startPosition = new Vector3(0f, 0f, 0f);
 
             GameObject window = Object.Instantiate(_assetProvider
                 .Initialize<GameObject>(path),parentTransform);
@@ -27,6 +67,7 @@ namespace CodeBase.Factories
             window.transform.localPosition = startPosition;
             return window;
         }
+
         public GameObject CreateBaseWindow(string path, Transform parentTransform, Vector2 anchoredPosition)
         {
             GameObject window = Object.Instantiate(_assetProvider
@@ -37,14 +78,11 @@ namespace CodeBase.Factories
             return window;
         }
 
-        public GameObject CreateBaseWindow(string path)
+        public Transform CreateUIWindow(string path)
         {
-            Vector3 startPosition = new Vector3(0, 0, 0);
-
-            GameObject window = Object.Instantiate(_assetProvider
-                .Initialize<GameObject>(path));
-
-            window.transform.localPosition = startPosition;
+            Transform window = Object.Instantiate(_assetProvider
+                .Initialize<Transform>(path));
+            
             return window;
         }
 

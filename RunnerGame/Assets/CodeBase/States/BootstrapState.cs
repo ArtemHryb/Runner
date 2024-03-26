@@ -1,6 +1,5 @@
 ﻿using CodeBase.Factories;
 using CodeBase.Factories.AssetProviding;
-using CodeBase.Logic.Obstacle;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
 using CodeBase.Services.Audio;
@@ -41,8 +40,8 @@ namespace CodeBase.States
             _services.RegisterSingle<IGameStateMachine>(_stateMachine);
             _services.RegisterSingle<IAssetProvider>(new AssetProvider());
             _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>()));
-            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>()));
-            //_services.RegisterSingle<ICoroutineRunner>(new CoroutineRunner());
+            _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IGameStateMachine>(),
+                _services.Single<IAssetProvider>()));
             _services.RegisterSingle<ISceneLoader>(new SceneLoader(_services.Single<ICoroutineRunner>()));
             _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IAssetProvider>(),
                 _services.Single<IGameFactory>()));

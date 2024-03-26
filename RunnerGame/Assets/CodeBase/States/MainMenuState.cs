@@ -36,9 +36,7 @@ namespace CodeBase.States
         private void Initialize()
         {
             _saveTheBestScore.Load();
-            _uiFactory.CreateBaseWindow(AssetPath.UICamera);
-           MainMenuController mainMenu = _uiFactory.CreateBaseWindow(AssetPath.MainMenu, null)
-               .GetComponent<MainMenuController>();
+           MainMenuController mainMenu = _uiFactory.CreateMainMenu();
            mainMenu.Initialize(_stateMachine,_saveTheBestScore,_audioService);
            _audioService.PlayMusic(MusicType.MainMenu);
         }
