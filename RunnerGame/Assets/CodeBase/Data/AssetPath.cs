@@ -13,6 +13,8 @@ namespace CodeBase.Data
         public const string CoinCounter = "UI/Hud/CoinCounter";
         public const string LoseWindow = "UI/GameOver/GameOverWindow";
         public const string PregameMenu = "UI/Hud/PregameMenu";
+        public const string DistanceTracker = "UI/Hud/DistanceTracker";
+        public const string CoroutineRunner = "UI/Hud/CoroutineRunner";
 
         public const string Geometry = "LevelItems/Geometry";
         public const string DirectionalLight = "DirectionalLight";

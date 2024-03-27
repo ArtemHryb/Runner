@@ -11,7 +11,7 @@ namespace CodeBase.UI
         private Image[] _hearts;
 
         private int _currentHp;
-        private int _maxHp = 3;
+        private int _maxHp = 5;
         private IGameStateMachine _stateMachine;
 
         public void Initialize(IGameStateMachine stateMachine) => 

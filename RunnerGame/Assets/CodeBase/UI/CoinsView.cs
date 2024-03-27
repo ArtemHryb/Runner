@@ -18,16 +18,8 @@ namespace CodeBase.UI
             _coinService.OnCoinPick += UpdateText;
         }
 
-        public void Initialize(ICoinService coinService)
-        {
-            _coinService = coinService;
-            _coinService.OnCoinPick += UpdateText;
-        }
+        private void Start() => UpdateText();
 
-        // private void OnEnable() => 
-        //     _coinService.OnCoinPick += UpdateText;
-        // private void OnDisable() => 
-        //     _coinService.OnCoinPick -= UpdateText;
         private void OnDestroy() => 
             _coinService.OnCoinPick -= UpdateText;
 

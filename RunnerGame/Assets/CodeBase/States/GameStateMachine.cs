@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Factories;
+using CodeBase.Logic;
 using CodeBase.Logic.Obstacle;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
@@ -26,10 +27,11 @@ namespace CodeBase.States
                 
                 [typeof(LoadGameState)] = new LoadGameState(this,sceneLoader, services.Single<IGameFactory>(),
                     services.Single<IUIFactory>(),services.Single<ICoinService>(),
-                    services.Single<IAudioService>()),
+                    services.Single<IAudioService>(),services.Single<IDistanceTrackerService>()),
                 
                 [typeof(GameOverState)] = new GameOverState(this,services.Single<IUIFactory>(),
-                    services.Single<ISaveTheBestScore>(),services.Single<IAudioService>(),services.Single<ICoinService>())
+                    services.Single<ISaveTheBestScore>(),services.Single<IAudioService>()
+                    ,services.Single<ICoinService>(),services.Single<IDistanceTrackerService>())
             };
         }
         public void Enter<TState>() where TState : class, IState

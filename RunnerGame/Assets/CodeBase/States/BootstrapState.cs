@@ -1,5 +1,6 @@
 ﻿using CodeBase.Factories;
 using CodeBase.Factories.AssetProviding;
+using CodeBase.Logic;
 using CodeBase.SceneLoading;
 using CodeBase.Services;
 using CodeBase.Services.Audio;
@@ -46,7 +47,8 @@ namespace CodeBase.States
             _services.RegisterSingle<IAudioService>(new AudioService(_services.Single<IAssetProvider>(),
                 _services.Single<IGameFactory>()));
             _services.RegisterSingle<ICoinService>(new CoinService(_services.Single<IAudioService>()));
-            _services.RegisterSingle<ISaveTheBestScore>(new SaveTheBestScore(_services.Single<ICoinService>()));
+            _services.RegisterSingle<IDistanceTrackerService>(new DistanceTrackerService(_services.Single<IUIFactory>()));
+            _services.RegisterSingle<ISaveTheBestScore>(new SaveTheBestScore(_services.Single<IDistanceTrackerService>()));
         }
     }
 }

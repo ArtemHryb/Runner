@@ -6,7 +6,8 @@ namespace CodeBase.Services.CoinService
     {
         event Action OnCoinPick;
         int Count { get; set; }
-        void GetCoin(int count);
-        void ResetCoin();
+        void GetCoin();
+        void Save();
+        void Load();
     }
 }

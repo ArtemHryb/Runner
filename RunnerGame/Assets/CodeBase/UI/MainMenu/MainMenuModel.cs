@@ -12,7 +12,7 @@ namespace CodeBase.UI.MainMenu
         public void Exit() => 
             Application.Quit();
 
-        public void UpdateBestScore(TMP_Text text, int score) => 
-            text.text = score.ToString();
+        public void UpdateBestScore(TMP_Text text, float score) => 
+            text.text = score.ToString("0.0" +"m");
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace CodeBase.Services
+﻿using CodeBase.SceneLoading;
+
+namespace CodeBase.Services
 {
     public class AllServices
     {

@@ -2,6 +2,6 @@
 {
     public struct BestScore
     {
-        public int Score;
+        public float Score;
     }
 }

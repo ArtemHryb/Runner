@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using CodeBase.Services.CoinService;
+using CodeBase.Logic;
 using UnityEngine;
 
 
@@ -8,32 +8,30 @@ namespace CodeBase.Services.BestScore
 {
     public class SaveTheBestScore : ISaveTheBestScore
     {
-        private readonly ICoinService _coinService;
-
-        private string _savePath = "Data/Score.json";
-        private string _fileName = "TheHighestScore.json";
+        private readonly IDistanceTrackerService _distanceTracker;
+        private readonly string _savePath = "Data/Score.json";
+        private readonly string _fileName = "TheHighestScore.json";
         
-        public int TheBestScore { get; private set; }
-
-        public SaveTheBestScore(ICoinService coinService)
+        public float TheBestScore { get; private set; }
+        public SaveTheBestScore(IDistanceTrackerService distanceTracker)
         {
-            _coinService = coinService;
+            _distanceTracker = distanceTracker;
             
-#if UNITY_ANDROID && !UNITY_EDITOR
+        #if UNITY_ANDROID && !UNITY_EDITOR
             _savePath = Path.Combine(Application.persistentDataPath, _fileName);
-#else
+        #else
             _savePath = Path.Combine(Application.dataPath, _fileName);
-#endif
+        #endif
         }
         
         public void Save()
         {
-            if (_coinService.Count < TheBestScore)
+            if (_distanceTracker.Distance < TheBestScore)
                 return;
 
             Data.BestScore bestScore = new Data.BestScore()
             {
-                Score = _coinService.Count
+                Score = _distanceTracker.Distance
             };
 
             try
@@ -43,7 +41,7 @@ namespace CodeBase.Services.BestScore
             }
             catch (Exception)
             {
-                Debug.Log("Load problem");
+                Debug.Log("Save problem");
             }
         }
 

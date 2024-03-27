@@ -8,10 +8,9 @@ namespace CodeBase.Coin
 {
     public class CoinPickBehaviour : MonoBehaviour
     {
-        [SerializeField] private int _pickBonus = 1;
+        private const float DestroyDelay = 0.5f;
         [SerializeField] private GameObject _fx;
 
-        private readonly float _destroyDelay = 0.5f;
         private ICoinService _coinService;
         private IGameFactory _gameFactory;
 
@@ -20,9 +19,9 @@ namespace CodeBase.Coin
 
         private void OnTriggerEnter(Collider other)
         {
-            _coinService.GetCoin(_pickBonus);
+            _coinService.GetCoin();
            GameObject fx = Instantiate(_fx, transform.position, Quaternion.identity);
-           Destroy(fx, _destroyDelay);
+           Destroy(fx, DestroyDelay);
            Destroy(gameObject);
         }
     }

@@ -10,16 +10,16 @@ namespace CodeBase.UI.GameOverMenu
         [SerializeField] private Button _restartButton;
         [SerializeField] private Button _mainMenuButton;
 
-        [SerializeField] private TMP_Text _currentScoreText;
-        [SerializeField] private TMP_Text _bestScoreText;
+        [SerializeField] private TMP_Text _currentDistanceText;
+        [SerializeField] private TMP_Text _bestDistanceText;
 
         private IGameStateMachine _stateMachine;
         
-        public void Initialize(IGameStateMachine stateMachine,int currentScore,int bestScore)
+        public void Initialize(IGameStateMachine stateMachine,float currentDistance,float bestDistance)
         {
             _stateMachine = stateMachine;
-            _currentScoreText.text = currentScore.ToString();
-            _bestScoreText.text = bestScore.ToString();
+            _currentDistanceText.text = currentDistance.ToString("0.0" + "m");
+            _bestDistanceText.text = bestDistance.ToString("0.0" + "m");
         }
         private void Awake()
         {

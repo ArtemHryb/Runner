@@ -1,6 +1,7 @@
 ﻿using CodeBase.Audio;
 using CodeBase.Data;
 using CodeBase.Factories;
+using CodeBase.Logic;
 using CodeBase.SceneLoading;
 using CodeBase.Services.Audio;
 using CodeBase.Services.CoinService;
@@ -15,9 +16,10 @@ namespace CodeBase.States
         private readonly IUIFactory _uiFactory;
         private readonly ICoinService _coinService;
         private readonly IAudioService _audioService;
+        private readonly IDistanceTrackerService _distanceTracker;
 
         public LoadGameState(IGameStateMachine stateMachine, ISceneLoader sceneLoader, IGameFactory gameFactory,
-            IUIFactory uiFactory,ICoinService coinService, IAudioService audioService)
+            IUIFactory uiFactory,ICoinService coinService, IAudioService audioService, IDistanceTrackerService distanceTracker)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -25,6 +27,7 @@ namespace CodeBase.States
             _uiFactory = uiFactory;
             _coinService = coinService;
             _audioService = audioService;
+            _distanceTracker = distanceTracker;
         }
         
         public void Enter() => 
@@ -34,8 +37,13 @@ namespace CodeBase.States
         {
             _audioService.PlayMusic(MusicType.Game);
             _uiFactory.CreateInGameHud();
+            
+            _coinService.Load();
+            
+            _distanceTracker.Reset();
+            _distanceTracker.StartTracking();
+            
             _gameFactory.CreateGameObjects();
-            _coinService.ResetCoin();
         }
         public void Exit()
         {
