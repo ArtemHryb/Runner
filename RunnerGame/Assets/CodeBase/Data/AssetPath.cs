@@ -6,6 +6,7 @@ namespace CodeBase.Data
         
         public const string GameCamera = "GameCamera";
         public const string UICamera = "UICamera";
+        public const string DirectionalLight = "DirectionalLight";
 
         public const string HUD = "UI/Hud/HUD";
         public const string MainMenu = "UI/Main/MainMenu";
@@ -14,10 +15,12 @@ namespace CodeBase.Data
         public const string LoseWindow = "UI/GameOver/GameOverWindow";
         public const string PregameMenu = "UI/Hud/PregameMenu";
         public const string DistanceTracker = "UI/Hud/DistanceTracker";
+        public const string MagnetTracker = "UI/Hud/MagnetTracker";
         public const string CoroutineRunner = "UI/Hud/CoroutineRunner";
 
         public const string Geometry = "LevelItems/Geometry";
-        public const string DirectionalLight = "DirectionalLight";
+        public const string Magnet = "LevelItems/Magnet";
+        public const string Coin = "LevelItems/Coin";
 
         public const string Explosion = "Explosion";
 

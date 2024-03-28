@@ -1,15 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using CodeBase.Data;
+using CodeBase.Factories;
+using CodeBase.Services;
 using UnityEngine;
 
 namespace CodeBase.Logic.Spawners
 {
     public class CoinSpawner : LevelItemsSpawner
     {
-        [SerializeField] private GameObject _coinPrefab;
-
         [SerializeField] private List<Transform> _coinsSpawnPoints;
 
         [SerializeField] private Transform _coinsContainer;
+
+        private IGameFactory _gameFactory;
+
+        private void Awake() => 
+            _gameFactory = AllServices.Container.Single<IGameFactory>();
 
         private void Start() => 
             SpawnItems();
@@ -24,9 +31,8 @@ namespace CodeBase.Logic.Spawners
             {
                 for (int i = 0; i < _coinsSpawnPoints.Count; i++)
                 {
-                    Instantiate(_coinPrefab, _coinsSpawnPoints[i].position + currentPosition,
-                        Quaternion.Euler(-90f,0f,0f), _coinsContainer);
-                    
+                    _gameFactory.CreateBaseGameObject(AssetPath.Coin,_coinsSpawnPoints[i].position + currentPosition,
+                        Quaternion.Euler(-90f,0f,0),_coinsContainer );
                     currentPosition += spacing;
                 }
             }

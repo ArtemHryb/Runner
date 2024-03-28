@@ -7,9 +7,9 @@ namespace CodeBase.Hero
     [RequireComponent(typeof(CharacterController))]
     public class HeroMove : MonoBehaviour
     {
+        public float PlayerSpeed { get; private set; }
         private const int Spacing = 1;
         private const float Duration = 0.5f;
-        
         [SerializeField] private HeroAnimation _heroAnimation;
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private float _movementSpeed = 2f;
@@ -37,8 +37,8 @@ namespace CodeBase.Hero
         {
             Vector3 movementVector = Vector3.forward;
             _characterController.Move(_movementSpeed * movementVector * Time.deltaTime);
-
             GroundCheck();
+            PlayerSpeed = _movementSpeed;
         }
 
         private void OnDestroy() => 

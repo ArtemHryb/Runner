@@ -44,6 +44,7 @@ namespace CodeBase.States
             _distanceTracker.StartTracking();
             
             _gameFactory.CreateGameObjects();
+            
         }
         public void Exit()
         {

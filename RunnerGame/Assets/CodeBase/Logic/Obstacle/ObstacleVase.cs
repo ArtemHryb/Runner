@@ -1,4 +1,5 @@
 ﻿using CodeBase.Audio;
+using CodeBase.Data;
 using CodeBase.Hero;
 using UnityEngine;
 
@@ -8,12 +9,13 @@ namespace CodeBase.Logic.Obstacle
     {
         protected override void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag(PlayerTag))
+            if (other.CompareTag(AllTags.Player))
             {
                 other.GetComponent<HeroHealth>().TakeDamage();
                 _audioService.PlaySfx(SfxType.BrokeVase);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
+            
         }
 
     }

@@ -136,6 +136,68 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2367974484905274748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1318879541375077532}
+  m_Layer: 0
+  m_Name: MagnetsContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1318879541375077532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2367974484905274748}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 630768510931250696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2427246426735979979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4175411533909478671}
+  m_Layer: 0
+  m_Name: MagnetSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4175411533909478671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2427246426735979979}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.141}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2232309001993024390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2742388866699916062
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +260,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2888517678961335291}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5368495801646722166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2232309001993024390}
+  - component: {fileID: 3473065718720410188}
+  m_Layer: 0
+  m_Name: MagnetsSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2232309001993024390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368495801646722166}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4175411533909478671}
+  m_Father: {fileID: 630768510931250696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3473065718720410188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368495801646722166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c23de5169d4f2ea9df4ce3bd89922a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _magnetsSpawnPoint: {fileID: 4175411533909478671}
+  _magnetsContainer: {fileID: 1318879541375077532}
 --- !u!1 &5732343455344144198
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,9 +372,11 @@ Transform:
   m_Children:
   - {fileID: 2888517678961335291}
   - {fileID: 6337992430402387817}
+  - {fileID: 1318879541375077532}
   - {fileID: 797689655942027537}
   - {fileID: 4548507602072430981}
   - {fileID: 2868543333187121633}
+  - {fileID: 2232309001993024390}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4152428064966482721
@@ -294,7 +405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced01aec191849dbaf198ef0f8563a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPrefab: {fileID: 6971245943758476932, guid: 5437254aa4688364aa59d44478ee8950, type: 3}
   _coinsSpawnPoints:
   - {fileID: 2553754489687217235}
   - {fileID: 8091666199366053638}
@@ -475,6 +585,7 @@ MonoBehaviour:
   - {fileID: 7449043943021115662}
   - {fileID: 602554673106322026}
   - {fileID: 671677882903091239}
+  - {fileID: 17417972868807452}
   - {fileID: 6546453419862117886}
   - {fileID: 311100413307909966}
   _obstaclesContainer: {fileID: 797689655942027537}
@@ -908,6 +1019,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ca36ad10a2675f45ba9568216804cd0, type: 3}
+--- !u!114 &17417972868807452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8178685228506990535, guid: 9ca36ad10a2675f45ba9568216804cd0, type: 3}
+  m_PrefabInstance: {fileID: 8195820611166649563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 443d1a2bb8464b8eb40ad2f7a5716211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2407687481353907117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5824478603360376694, guid: 9ca36ad10a2675f45ba9568216804cd0, type: 3}

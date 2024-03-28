@@ -11,6 +11,7 @@ namespace CodeBase.Factories
     public class UIFactory : IUIFactory
     {
         public Transform DistanceTracker { get; private set; }
+        public Transform MagnetTracker { get; private set; }
         public Transform CoinView { get; private set; }
         public Transform HpBar { get; private set; }
         public Transform HudRoot { get; private set; }
@@ -54,6 +55,9 @@ namespace CodeBase.Factories
 
         private void CreateDistanceTracker() => 
             DistanceTracker = CreateUIWindow(AssetPath.DistanceTracker, HudRoot);
+
+        public void CreateMagnetTracker() => 
+            MagnetTracker = CreateUIWindow(AssetPath.MagnetTracker, HudRoot);
 
         private void CreateCoroutineRunner()
         {

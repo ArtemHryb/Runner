@@ -21,7 +21,7 @@ namespace CodeBase.Logic
         }
 
         public void StartTracking()
-        {;
+        {
             _text = _uiFactory.DistanceTracker.GetComponentInChildren<TMP_Text>();
             MyCoroutineRunner runner = _uiFactory.CoroutineRunner;
             runner.StartCoroutine(MyUpdate());

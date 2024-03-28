@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hud
   - ObstacleSpawnPoint
+  - Magnet
+  - MagnetPick
   layers:
   - Default
   - TransparentFX
@@ -13,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Coin
-  - Player
+  - 
+  - 
   - Ground
   - 
   - 

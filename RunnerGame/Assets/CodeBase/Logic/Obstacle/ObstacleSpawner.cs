@@ -16,7 +16,8 @@ namespace CodeBase.Logic.Obstacle
 
         private IGameFactory _gameFactory;
         
-        private void Awake() => _gameFactory = AllServices.Container.Single<IGameFactory>(); 
+        private void Awake() =>
+            _gameFactory = AllServices.Container.Single<IGameFactory>(); 
         
         private void Start() => Spawn();
 

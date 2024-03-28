@@ -6,6 +6,6 @@
         PickCoin = 1,
         BrokeGate = 2,
         GameOver = 3,
-        BrokeVase = 4
+        BrokeVase = 4,
     }
 }
