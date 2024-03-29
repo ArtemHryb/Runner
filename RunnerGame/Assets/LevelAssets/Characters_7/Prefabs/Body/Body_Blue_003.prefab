@@ -158,8 +158,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8ffe65170a450d9fe9c9330db6369b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heroAnimation: {fileID: 0}
   _characterController: {fileID: 7985199836075719404}
   _movementSpeed: 2
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!95 &7383155259315629838
 Animator:
   serializedVersion: 5

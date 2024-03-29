@@ -200,4 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8bd747facd41899f794f72938bd71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fx: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
+  _pickFx: {fileID: 1845955007268882, guid: 67a684e320da6e7439421a07e3fa265c, type: 3}
